@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "EoGHBUPC6XOd3ZOyVORLmEXq0ggF9FTMyyJUCPrQKd6rdhn5ug6Jvv8Qx2RpGqopQ6K+EqIntr75fDC9Df76Zg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Valeria\\Documents\\UNIVERSIDAD\\2024\\TCU\\CursoSistemaVenta\\CapaPresentacion\\CapaPresentacion.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Valeria\\.nuget\\packages\\fontawesome.sharp\\6.3.0\\fontawesome.sharp.6.3.0.nupkg.sha512"
+  ],
+  "logs": []
+}
