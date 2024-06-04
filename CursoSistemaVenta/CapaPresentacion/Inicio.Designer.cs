@@ -214,6 +214,7 @@
             Controls.Add(menuTitulo);
             MainMenuStrip = menu;
             Name = "Inicio";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             menu.ResumeLayout(false);
             menu.PerformLayout();
