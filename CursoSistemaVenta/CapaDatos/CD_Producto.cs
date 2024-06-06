@@ -1,28 +1,28 @@
-﻿using System;
-using System.Collections;
+﻿using CapaEntidad;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
-using System.Reflection;
+using System.Data;
+using System.Linq;
 using System.Text;
-using CapaEntidad;
+using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    public class CD_Usuarios
+    public class CD_Producto
     {
-        public List<Usuario> Listar()
+        public List<Producto> Listar()
         {
-            List<Usuario> lista = new List<Usuario>();
+            List<Producto> lista = new List<Producto>();
 
             using (SqlConnection oConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["cadena_conexion"].ConnectionString))
             {
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("SELECT u.IdUsuario, u.Documento, u.NombreCompleto, u.Correo, u.Clave, u.Estado, r.IdRol, r.Descripcion FROM Usuario u");
-                    query.AppendLine("INNER JOIN Rol r on r.IdRol = u.IdRol");
+                    query.AppendLine("SELECT IdProducto,Codigo,Nombre, p.Descripcion, c.IdCategoria, c.Descripcion 'DescripcionCategoria', Stock, PrecioCompra,PrecioVenta,p.Estado FROM Producto p");
+                    query.AppendLine("INNER JOIN Categoria c ON c.IdCategoria = p.IdCategoria");
 
                     SqlCommand cmd = new SqlCommand(query.ToString(), oConnection);
                     cmd.CommandType = CommandType.Text;
@@ -33,19 +33,21 @@ namespace CapaDatos
                     {
                         while (dr.Read())
                         {
-                            lista.Add(new Usuario()
+                            lista.Add(new Producto()
                             {
-                                IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
-                                Documento = dr["Documento"].ToString(),
-                                NombreCompleto = dr["NombreCompleto"].ToString(),
-                                Correo = dr["Correo"].ToString(),
-                                Clave = dr["Clave"].ToString(),
-                                Estado = Convert.ToBoolean(dr["Estado"]),
-                                oRol = new Rol() 
-                                { 
-                                    IdRol = Convert.ToInt32(dr["IdRol"]),
-                                    Descripcion = dr["Descripcion"].ToString()
-                                }
+                                IdProducto = Convert.ToInt32(dr["IdProducto"]),
+                                Codigo = dr["Codigo"].ToString(),
+                                Nombre = dr["Nombre"].ToString(),
+                                Descripcion = dr["Descripcion"].ToString(),
+                                oCategoria = new Categoria()
+                                {
+                                    IdCategoria = Convert.ToInt32(dr["IdCategoria"]),
+                                    Descripcion = dr["DescripcionCategoria"].ToString()
+                                },
+                                Stock = Convert.ToInt32(dr["Stock"]),
+                                PrecioCompra = Convert.ToDecimal(dr["PrecioCompra"]),
+                                PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"]),
+                                Estado = Convert.ToBoolean(dr["Estado"])
                             });
                         }
                     }
@@ -53,35 +55,34 @@ namespace CapaDatos
                 catch (SqlException ex)
                 {
                     Console.WriteLine("SQL Error: " + ex.Message);
-                    lista = new List<Usuario>();
+                    lista = new List<Producto>();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error: " + ex.Message);
-                    lista = new List<Usuario>();
+                    lista = new List<Producto>();
                 }
             }
 
             return lista;
         }
 
-        public int Registrar(Usuario entidad, out string mensaje)
+        public int Registrar(Producto entidad, out string mensaje)
         {
-            int idUsuarioGenerado = 0;
+            int idProductoGenerado = 0;
             mensaje = string.Empty;
 
             try
             {
                 using (SqlConnection oConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["cadena_conexion"].ConnectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SP_RegistrarUsuario", oConnection);
-                    cmd.Parameters.AddWithValue("Documento", entidad.Documento);
-                    cmd.Parameters.AddWithValue("NombreCompleto", entidad.NombreCompleto);
-                    cmd.Parameters.AddWithValue("Correo", entidad.Correo);
-                    cmd.Parameters.AddWithValue("Clave", entidad.Clave);
-                    cmd.Parameters.AddWithValue("IdRol", entidad.oRol.IdRol);
+                    SqlCommand cmd = new SqlCommand("SP_RegistrarProducto", oConnection);
+                    cmd.Parameters.AddWithValue("Codigo", entidad.Codigo);
+                    cmd.Parameters.AddWithValue("Descripcion", entidad.Descripcion);
+                    cmd.Parameters.AddWithValue("Nombre", entidad.Nombre);
+                    cmd.Parameters.AddWithValue("IdCategoria", entidad.oCategoria.IdCategoria);
                     cmd.Parameters.AddWithValue("Estado", entidad.Estado);
-                    cmd.Parameters.Add("IdUsuarioResultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -89,7 +90,7 @@ namespace CapaDatos
                     oConnection.Open();
                     cmd.ExecuteNonQuery();
 
-                    idUsuarioGenerado = Convert.ToInt32(cmd.Parameters["IdUsuarioResultado"].Value);
+                    idProductoGenerado = Convert.ToInt32(cmd.Parameters["Respuesta"].Value);
                     mensaje = cmd.Parameters["Mensaje"].Value.ToString();
 
                 }
@@ -97,15 +98,15 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                idUsuarioGenerado = 0;
+                idProductoGenerado = 0;
                 mensaje = ex.Message;
             }
 
-            return idUsuarioGenerado;
+            return idProductoGenerado;
         }
 
 
-        public bool Editar(Usuario entidad, out string mensaje)
+        public bool Editar(Producto entidad, out string mensaje)
         {
             bool respuesta = false;
             mensaje = string.Empty;
@@ -114,13 +115,12 @@ namespace CapaDatos
             {
                 using (SqlConnection oConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["cadena_conexion"].ConnectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SP_EditarUsuario", oConnection);
-                    cmd.Parameters.AddWithValue("IdUsuario", entidad.IdUsuario);
-                    cmd.Parameters.AddWithValue("Documento", entidad.Documento);
-                    cmd.Parameters.AddWithValue("NombreCompleto", entidad.NombreCompleto);
-                    cmd.Parameters.AddWithValue("Correo", entidad.Correo);
-                    cmd.Parameters.AddWithValue("Clave", entidad.Clave);
-                    cmd.Parameters.AddWithValue("IdRol", entidad.oRol.IdRol);
+                    SqlCommand cmd = new SqlCommand("SP_EditarProducto", oConnection);
+                    cmd.Parameters.AddWithValue("IdProducto", entidad.IdProducto);
+                    cmd.Parameters.AddWithValue("Codigo", entidad.Codigo);
+                    cmd.Parameters.AddWithValue("Descripcion", entidad.Descripcion);
+                    cmd.Parameters.AddWithValue("Nombre", entidad.Nombre);
+                    cmd.Parameters.AddWithValue("IdCategoria", entidad.oCategoria.IdCategoria);
                     cmd.Parameters.AddWithValue("Estado", entidad.Estado);
                     cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
@@ -144,7 +144,7 @@ namespace CapaDatos
             return respuesta;
         }
 
-        public bool Eliminar(Usuario entidad, out string mensaje)
+        public bool Eliminar(Producto entidad, out string mensaje)
         {
             bool respuesta = false;
             mensaje = string.Empty;
@@ -153,8 +153,8 @@ namespace CapaDatos
             {
                 using (SqlConnection oConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["cadena_conexion"].ConnectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SP_EliminarUsuario", oConnection);
-                    cmd.Parameters.AddWithValue("IdUsuario", entidad.IdUsuario);
+                    SqlCommand cmd = new SqlCommand("SP_EliminarProducto", oConnection);
+                    cmd.Parameters.AddWithValue("IdProducto", entidad.IdProducto);
                     cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -176,7 +176,6 @@ namespace CapaDatos
 
             return respuesta;
         }
-
 
     }
 }

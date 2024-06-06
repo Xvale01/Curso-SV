@@ -1,28 +1,28 @@
-﻿using System;
-using System.Collections;
+﻿using CapaEntidad;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
-using System.Reflection;
+using System.Data;
+using System.Linq;
 using System.Text;
-using CapaEntidad;
+using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    public class CD_Usuarios
+    public class CD_Categoria
     {
-        public List<Usuario> Listar()
+
+        public List<Categoria> Listar()
         {
-            List<Usuario> lista = new List<Usuario>();
+            List<Categoria> lista = new List<Categoria>();
 
             using (SqlConnection oConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["cadena_conexion"].ConnectionString))
             {
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("SELECT u.IdUsuario, u.Documento, u.NombreCompleto, u.Correo, u.Clave, u.Estado, r.IdRol, r.Descripcion FROM Usuario u");
-                    query.AppendLine("INNER JOIN Rol r on r.IdRol = u.IdRol");
+                    query.AppendLine("SELECT IdCategoria, Descripcion, Estado FROM Categoria");
 
                     SqlCommand cmd = new SqlCommand(query.ToString(), oConnection);
                     cmd.CommandType = CommandType.Text;
@@ -33,19 +33,11 @@ namespace CapaDatos
                     {
                         while (dr.Read())
                         {
-                            lista.Add(new Usuario()
+                            lista.Add(new Categoria()
                             {
-                                IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
-                                Documento = dr["Documento"].ToString(),
-                                NombreCompleto = dr["NombreCompleto"].ToString(),
-                                Correo = dr["Correo"].ToString(),
-                                Clave = dr["Clave"].ToString(),
+                                IdCategoria = Convert.ToInt32(dr["IdCategoria"]),
+                                Descripcion = dr["Descripcion"].ToString(),
                                 Estado = Convert.ToBoolean(dr["Estado"]),
-                                oRol = new Rol() 
-                                { 
-                                    IdRol = Convert.ToInt32(dr["IdRol"]),
-                                    Descripcion = dr["Descripcion"].ToString()
-                                }
                             });
                         }
                     }
@@ -53,35 +45,31 @@ namespace CapaDatos
                 catch (SqlException ex)
                 {
                     Console.WriteLine("SQL Error: " + ex.Message);
-                    lista = new List<Usuario>();
+                    lista = new List<Categoria>();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error: " + ex.Message);
-                    lista = new List<Usuario>();
+                    lista = new List<Categoria>();
                 }
             }
 
             return lista;
         }
 
-        public int Registrar(Usuario entidad, out string mensaje)
+        public int Registrar(Categoria entidad, out string mensaje)
         {
-            int idUsuarioGenerado = 0;
+            int idCategoriaGenerado = 0;
             mensaje = string.Empty;
 
             try
             {
                 using (SqlConnection oConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["cadena_conexion"].ConnectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SP_RegistrarUsuario", oConnection);
-                    cmd.Parameters.AddWithValue("Documento", entidad.Documento);
-                    cmd.Parameters.AddWithValue("NombreCompleto", entidad.NombreCompleto);
-                    cmd.Parameters.AddWithValue("Correo", entidad.Correo);
-                    cmd.Parameters.AddWithValue("Clave", entidad.Clave);
-                    cmd.Parameters.AddWithValue("IdRol", entidad.oRol.IdRol);
+                    SqlCommand cmd = new SqlCommand("SP_RegistrarCategoria", oConnection);
+                    cmd.Parameters.AddWithValue("Descripcion", entidad.Descripcion);
                     cmd.Parameters.AddWithValue("Estado", entidad.Estado);
-                    cmd.Parameters.Add("IdUsuarioResultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -89,7 +77,7 @@ namespace CapaDatos
                     oConnection.Open();
                     cmd.ExecuteNonQuery();
 
-                    idUsuarioGenerado = Convert.ToInt32(cmd.Parameters["IdUsuarioResultado"].Value);
+                    idCategoriaGenerado = Convert.ToInt32(cmd.Parameters["Respuesta"].Value);
                     mensaje = cmd.Parameters["Mensaje"].Value.ToString();
 
                 }
@@ -97,15 +85,15 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                idUsuarioGenerado = 0;
+                idCategoriaGenerado = 0;
                 mensaje = ex.Message;
             }
 
-            return idUsuarioGenerado;
+            return idCategoriaGenerado;
         }
 
 
-        public bool Editar(Usuario entidad, out string mensaje)
+        public bool Editar(Categoria entidad, out string mensaje)
         {
             bool respuesta = false;
             mensaje = string.Empty;
@@ -114,13 +102,9 @@ namespace CapaDatos
             {
                 using (SqlConnection oConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["cadena_conexion"].ConnectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SP_EditarUsuario", oConnection);
-                    cmd.Parameters.AddWithValue("IdUsuario", entidad.IdUsuario);
-                    cmd.Parameters.AddWithValue("Documento", entidad.Documento);
-                    cmd.Parameters.AddWithValue("NombreCompleto", entidad.NombreCompleto);
-                    cmd.Parameters.AddWithValue("Correo", entidad.Correo);
-                    cmd.Parameters.AddWithValue("Clave", entidad.Clave);
-                    cmd.Parameters.AddWithValue("IdRol", entidad.oRol.IdRol);
+                    SqlCommand cmd = new SqlCommand("SP_EditarCategoria", oConnection);
+                    cmd.Parameters.AddWithValue("IdCategoria", entidad.IdCategoria);
+                    cmd.Parameters.AddWithValue("Descripcion", entidad.Descripcion);
                     cmd.Parameters.AddWithValue("Estado", entidad.Estado);
                     cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
@@ -144,7 +128,7 @@ namespace CapaDatos
             return respuesta;
         }
 
-        public bool Eliminar(Usuario entidad, out string mensaje)
+        public bool Eliminar(Categoria entidad, out string mensaje)
         {
             bool respuesta = false;
             mensaje = string.Empty;
@@ -153,8 +137,8 @@ namespace CapaDatos
             {
                 using (SqlConnection oConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["cadena_conexion"].ConnectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SP_EliminarUsuario", oConnection);
-                    cmd.Parameters.AddWithValue("IdUsuario", entidad.IdUsuario);
+                    SqlCommand cmd = new SqlCommand("SP_EliminarCategoria", oConnection);
+                    cmd.Parameters.AddWithValue("IdCategoria", entidad.IdCategoria);
                     cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -166,7 +150,6 @@ namespace CapaDatos
                     mensaje = cmd.Parameters["Mensaje"].Value.ToString();
 
                 }
-
             }
             catch (Exception ex)
             {

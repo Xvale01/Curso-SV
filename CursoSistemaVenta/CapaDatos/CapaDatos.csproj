@@ -48,9 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CD_Categoria.cs" />
     <Compile Include="CD_Permiso.cs" />
+    <Compile Include="CD_Producto.cs" />
     <Compile Include="CD_Rol.cs" />
     <Compile Include="CD_Usuarios.cs" />
+    <Compile Include="CD_Ventas.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
