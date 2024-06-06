@@ -81,7 +81,9 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Clave", entidad.Clave);
                     cmd.Parameters.AddWithValue("IdRol", entidad.oRol.IdRol);
                     cmd.Parameters.AddWithValue("Estado", entidad.Estado);
-                    cmd.Parameters.Add("IdUsuarioResultado", SqlDbType.VarChar).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("IdUsuarioResultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     oConnection.Open();
@@ -112,20 +114,22 @@ namespace CapaDatos
             {
                 using (SqlConnection oConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["cadena_conexion"].ConnectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SP_RegistrarUsuario", oConnection);
+                    SqlCommand cmd = new SqlCommand("SP_EditarUsuario", oConnection);
+                    cmd.Parameters.AddWithValue("IdUsuario", entidad.IdUsuario);
                     cmd.Parameters.AddWithValue("Documento", entidad.Documento);
                     cmd.Parameters.AddWithValue("NombreCompleto", entidad.NombreCompleto);
                     cmd.Parameters.AddWithValue("Correo", entidad.Correo);
                     cmd.Parameters.AddWithValue("Clave", entidad.Clave);
                     cmd.Parameters.AddWithValue("IdRol", entidad.oRol.IdRol);
                     cmd.Parameters.AddWithValue("Estado", entidad.Estado);
-                    cmd.Parameters.Add("IdUsuarioResultado", SqlDbType.VarChar).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     oConnection.Open();
                     cmd.ExecuteNonQuery();
 
-                    respuesta = Convert.ToInt32(cmd.Parameters["IdUsuarioResultado"].Value);
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta"].Value);
                     mensaje = cmd.Parameters["Mensaje"].Value.ToString();
 
                 }
@@ -133,7 +137,40 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                respuesta = 0;
+                respuesta = false;
+                mensaje = ex.Message;
+            }
+
+            return respuesta;
+        }
+
+        public bool Eliminar(Usuario entidad, out string mensaje)
+        {
+            bool respuesta = false;
+            mensaje = string.Empty;
+
+            try
+            {
+                using (SqlConnection oConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["cadena_conexion"].ConnectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("SP_EliminarUsuario", oConnection);
+                    cmd.Parameters.AddWithValue("IdUsuario", entidad.IdUsuario);
+                    cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    oConnection.Open();
+                    cmd.ExecuteNonQuery();
+
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta"].Value);
+                    mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                respuesta = false;
                 mensaje = ex.Message;
             }
 

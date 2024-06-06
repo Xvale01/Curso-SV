@@ -81,20 +81,42 @@ namespace CapaPresentacion
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            dgvUsuarios.Rows.Add(new object[]
+            string mensaje = string.Empty;
+            Usuario entidad = new Usuario()
             {
-                "",
-                txtId.Text,
-                txtDocumento.Text,
-                txtNombreCompleto.Text,
-                txtCorreo.Text,
-                txtContrasenna.Text,
-                ((OpcionCombo)cbRol.SelectedItem).Valor.ToString(),
-                ((OpcionCombo)cbRol.SelectedItem).Texto.ToString(),
-                ((OpcionCombo)cbEstado.SelectedItem).Valor.ToString(),
-                ((OpcionCombo)cbEstado.SelectedItem).Texto.ToString()
-            });
+                IdUsuario = Convert.ToInt32(txtId.Text),
+                Documento = txtDocumento.Text,
+                NombreCompleto = txtNombreCompleto.Text,
+                Correo = txtCorreo.Text,
+                Clave = txtContrasenna.Text,
+                oRol = new Rol() { IdRol = Convert.ToInt32(((OpcionCombo)cbRol.SelectedItem).Valor) },
+                Estado = Convert.ToInt32(((OpcionCombo)cbEstado.SelectedItem).Valor) == 1 ? true : false
+            };
 
+            int idUsuarioGenerado = new CN_Usuario().Registrar(entidad, out mensaje);
+
+            if (idUsuarioGenerado != 0)
+            {
+                dgvUsuarios.Rows.Add(new object[]
+                {
+                    "",
+                    txtId.Text,
+                    txtDocumento.Text,
+                    txtNombreCompleto.Text,
+                    txtCorreo.Text,
+                    txtContrasenna.Text,
+                    ((OpcionCombo)cbRol.SelectedItem).Valor.ToString(),
+                    ((OpcionCombo)cbRol.SelectedItem).Texto.ToString(),
+                    ((OpcionCombo)cbEstado.SelectedItem).Valor.ToString(),
+                    ((OpcionCombo)cbEstado.SelectedItem).Texto.ToString()
+                });
+
+                Limpiar();
+            }
+            else
+            {
+                MessageBox.Show(mensaje,"¡Importante!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             Limpiar();
         }
 
