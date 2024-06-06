@@ -31,25 +31,33 @@
             menu = new MenuStrip();
             menuUsuarios = new FontAwesome.Sharp.IconMenuItem();
             menuMantenedor = new FontAwesome.Sharp.IconMenuItem();
+            subMenuCategoria = new FontAwesome.Sharp.IconMenuItem();
+            subMenuProducto = new FontAwesome.Sharp.IconMenuItem();
             menuVentas = new FontAwesome.Sharp.IconMenuItem();
+            subMenuRegistrarVenta = new FontAwesome.Sharp.IconMenuItem();
+            subMenuVerDetalleVenta = new FontAwesome.Sharp.IconMenuItem();
             menuCompras = new FontAwesome.Sharp.IconMenuItem();
+            subMenuRegistrarCompra = new FontAwesome.Sharp.IconMenuItem();
+            subMenuVerDetalleCompra = new FontAwesome.Sharp.IconMenuItem();
             menuClientes = new FontAwesome.Sharp.IconMenuItem();
             menuProveedores = new FontAwesome.Sharp.IconMenuItem();
             menuReportes = new FontAwesome.Sharp.IconMenuItem();
-            menuAcercade = new FontAwesome.Sharp.IconMenuItem();
+            menuAcercaDe = new FontAwesome.Sharp.IconMenuItem();
             menuTitulo = new MenuStrip();
             label1 = new Label();
             contenedor = new Panel();
+            lblUsuario = new Label();
+            lblNombreUsuario = new Label();
             menu.SuspendLayout();
             SuspendLayout();
             // 
             // menu
             // 
             menu.BackColor = Color.White;
-            menu.Items.AddRange(new ToolStripItem[] { menuUsuarios, menuMantenedor, menuVentas, menuCompras, menuClientes, menuProveedores, menuReportes, menuAcercade });
-            menu.Location = new Point(0, 58);
+            menu.Items.AddRange(new ToolStripItem[] { menuUsuarios, menuMantenedor, menuVentas, menuCompras, menuClientes, menuProveedores, menuReportes, menuAcercaDe });
+            menu.Location = new Point(0, 63);
             menu.Name = "menu";
-            menu.Size = new Size(875, 73);
+            menu.Size = new Size(1282, 73);
             menu.TabIndex = 0;
             menu.Text = "menuStrip1";
             // 
@@ -67,10 +75,12 @@
             menuUsuarios.Size = new Size(80, 69);
             menuUsuarios.Text = "Usuarios";
             menuUsuarios.TextImageRelation = TextImageRelation.ImageAboveText;
+            menuUsuarios.Click += menuUsuarios_Click;
             // 
             // menuMantenedor
             // 
             menuMantenedor.AutoSize = false;
+            menuMantenedor.DropDownItems.AddRange(new ToolStripItem[] { subMenuCategoria, subMenuProducto });
             menuMantenedor.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             menuMantenedor.ForeColor = Color.LightSeaGreen;
             menuMantenedor.IconChar = FontAwesome.Sharp.IconChar.Tools;
@@ -83,9 +93,32 @@
             menuMantenedor.Text = "Mantenedor";
             menuMantenedor.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
+            // subMenuCategoria
+            // 
+            subMenuCategoria.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            subMenuCategoria.IconChar = FontAwesome.Sharp.IconChar.None;
+            subMenuCategoria.IconColor = Color.Black;
+            subMenuCategoria.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            subMenuCategoria.Name = "subMenuCategoria";
+            subMenuCategoria.Size = new Size(133, 22);
+            subMenuCategoria.Text = "Categoría";
+            subMenuCategoria.Click += subMenuCategoria_Click;
+            // 
+            // subMenuProducto
+            // 
+            subMenuProducto.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            subMenuProducto.IconChar = FontAwesome.Sharp.IconChar.None;
+            subMenuProducto.IconColor = Color.Black;
+            subMenuProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            subMenuProducto.Name = "subMenuProducto";
+            subMenuProducto.Size = new Size(133, 22);
+            subMenuProducto.Text = "Producto";
+            subMenuProducto.Click += subMenuProducto_Click;
+            // 
             // menuVentas
             // 
             menuVentas.AutoSize = false;
+            menuVentas.DropDownItems.AddRange(new ToolStripItem[] { subMenuRegistrarVenta, subMenuVerDetalleVenta });
             menuVentas.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             menuVentas.ForeColor = Color.LightSeaGreen;
             menuVentas.IconChar = FontAwesome.Sharp.IconChar.Tags;
@@ -98,9 +131,32 @@
             menuVentas.Text = "Ventas";
             menuVentas.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
+            // subMenuRegistrarVenta
+            // 
+            subMenuRegistrarVenta.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            subMenuRegistrarVenta.IconChar = FontAwesome.Sharp.IconChar.None;
+            subMenuRegistrarVenta.IconColor = Color.Black;
+            subMenuRegistrarVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            subMenuRegistrarVenta.Name = "subMenuRegistrarVenta";
+            subMenuRegistrarVenta.Size = new Size(164, 22);
+            subMenuRegistrarVenta.Text = "Registrar venta";
+            subMenuRegistrarVenta.Click += subMenuRegistrarVenta_Click;
+            // 
+            // subMenuVerDetalleVenta
+            // 
+            subMenuVerDetalleVenta.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            subMenuVerDetalleVenta.IconChar = FontAwesome.Sharp.IconChar.None;
+            subMenuVerDetalleVenta.IconColor = Color.Black;
+            subMenuVerDetalleVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            subMenuVerDetalleVenta.Name = "subMenuVerDetalleVenta";
+            subMenuVerDetalleVenta.Size = new Size(164, 22);
+            subMenuVerDetalleVenta.Text = "Ver detalle";
+            subMenuVerDetalleVenta.Click += subMenuVerDetalleVenta_Click;
+            // 
             // menuCompras
             // 
             menuCompras.AutoSize = false;
+            menuCompras.DropDownItems.AddRange(new ToolStripItem[] { subMenuRegistrarCompra, subMenuVerDetalleCompra });
             menuCompras.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             menuCompras.ForeColor = Color.LightSeaGreen;
             menuCompras.IconChar = FontAwesome.Sharp.IconChar.DollyFlatbed;
@@ -112,6 +168,28 @@
             menuCompras.Size = new Size(80, 69);
             menuCompras.Text = "Compras";
             menuCompras.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // subMenuRegistrarCompra
+            // 
+            subMenuRegistrarCompra.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            subMenuRegistrarCompra.IconChar = FontAwesome.Sharp.IconChar.None;
+            subMenuRegistrarCompra.IconColor = Color.Black;
+            subMenuRegistrarCompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            subMenuRegistrarCompra.Name = "subMenuRegistrarCompra";
+            subMenuRegistrarCompra.Size = new Size(180, 22);
+            subMenuRegistrarCompra.Text = "Registrar Compra";
+            subMenuRegistrarCompra.Click += subMenuRegistrarCompra_Click;
+            // 
+            // subMenuVerDetalleCompra
+            // 
+            subMenuVerDetalleCompra.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            subMenuVerDetalleCompra.IconChar = FontAwesome.Sharp.IconChar.None;
+            subMenuVerDetalleCompra.IconColor = Color.Black;
+            subMenuVerDetalleCompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            subMenuVerDetalleCompra.Name = "subMenuVerDetalleCompra";
+            subMenuVerDetalleCompra.Size = new Size(180, 22);
+            subMenuVerDetalleCompra.Text = "Ver detalle";
+            subMenuVerDetalleCompra.Click += subMenuVerDetalleCompra_Click;
             // 
             // menuClientes
             // 
@@ -127,6 +205,7 @@
             menuClientes.Size = new Size(80, 69);
             menuClientes.Text = "Clientes";
             menuClientes.TextImageRelation = TextImageRelation.ImageAboveText;
+            menuClientes.Click += menuClientes_Click;
             // 
             // menuProveedores
             // 
@@ -142,6 +221,7 @@
             menuProveedores.Size = new Size(80, 69);
             menuProveedores.Text = "Proveedores";
             menuProveedores.TextImageRelation = TextImageRelation.ImageAboveText;
+            menuProveedores.Click += menuProveedores_Click;
             // 
             // menuReportes
             // 
@@ -157,21 +237,23 @@
             menuReportes.Size = new Size(80, 69);
             menuReportes.Text = "Reportes";
             menuReportes.TextImageRelation = TextImageRelation.ImageAboveText;
+            menuReportes.Click += menuReportes_Click;
             // 
-            // menuAcercade
+            // menuAcercaDe
             // 
-            menuAcercade.AutoSize = false;
-            menuAcercade.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            menuAcercade.ForeColor = Color.LightSeaGreen;
-            menuAcercade.IconChar = FontAwesome.Sharp.IconChar.CircleInfo;
-            menuAcercade.IconColor = Color.LightSeaGreen;
-            menuAcercade.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            menuAcercade.IconSize = 50;
-            menuAcercade.ImageScaling = ToolStripItemImageScaling.None;
-            menuAcercade.Name = "menuAcercade";
-            menuAcercade.Size = new Size(80, 69);
-            menuAcercade.Text = "Acerca de";
-            menuAcercade.TextImageRelation = TextImageRelation.ImageAboveText;
+            menuAcercaDe.AutoSize = false;
+            menuAcercaDe.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            menuAcercaDe.ForeColor = Color.LightSeaGreen;
+            menuAcercaDe.IconChar = FontAwesome.Sharp.IconChar.CircleInfo;
+            menuAcercaDe.IconColor = Color.LightSeaGreen;
+            menuAcercaDe.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            menuAcercaDe.IconSize = 50;
+            menuAcercaDe.ImageScaling = ToolStripItemImageScaling.None;
+            menuAcercaDe.Name = "menuAcercaDe";
+            menuAcercaDe.Size = new Size(80, 69);
+            menuAcercaDe.Text = "Acerca de";
+            menuAcercaDe.TextImageRelation = TextImageRelation.ImageAboveText;
+            menuAcercaDe.Click += menuAcercade_Click;
             // 
             // menuTitulo
             // 
@@ -179,9 +261,10 @@
             menuTitulo.BackColor = Color.LightSeaGreen;
             menuTitulo.Location = new Point(0, 0);
             menuTitulo.Name = "menuTitulo";
-            menuTitulo.Size = new Size(875, 58);
+            menuTitulo.Size = new Size(1282, 63);
             menuTitulo.TabIndex = 1;
             menuTitulo.Text = "menuTitulo";
+            menuTitulo.ItemClicked += menuTitulo_ItemClicked;
             // 
             // label1
             // 
@@ -198,16 +281,45 @@
             // contenedor
             // 
             contenedor.Dock = DockStyle.Fill;
-            contenedor.Location = new Point(0, 131);
+            contenedor.Location = new Point(0, 136);
             contenedor.Name = "contenedor";
-            contenedor.Size = new Size(875, 405);
+            contenedor.Size = new Size(1282, 593);
             contenedor.TabIndex = 3;
+            contenedor.Paint += contenedor_Paint;
+            // 
+            // lblUsuario
+            // 
+            lblUsuario.AutoSize = true;
+            lblUsuario.BackColor = Color.LightSeaGreen;
+            lblUsuario.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblUsuario.ForeColor = Color.White;
+            lblUsuario.Location = new Point(756, 25);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(59, 19);
+            lblUsuario.TabIndex = 4;
+            lblUsuario.Text = "Usuario:";
+            lblUsuario.Click += label2_Click;
+            // 
+            // lblNombreUsuario
+            // 
+            lblNombreUsuario.AutoSize = true;
+            lblNombreUsuario.BackColor = Color.LightSeaGreen;
+            lblNombreUsuario.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblNombreUsuario.ForeColor = Color.White;
+            lblNombreUsuario.Location = new Point(811, 25);
+            lblNombreUsuario.Name = "lblNombreUsuario";
+            lblNombreUsuario.Size = new Size(53, 19);
+            lblNombreUsuario.TabIndex = 5;
+            lblNombreUsuario.Text = "Juanito";
+            lblNombreUsuario.Click += lblNombreUsuario_Click;
             // 
             // Inicio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(875, 536);
+            ClientSize = new Size(1282, 729);
+            Controls.Add(lblNombreUsuario);
+            Controls.Add(lblUsuario);
             Controls.Add(contenedor);
             Controls.Add(label1);
             Controls.Add(menu);
@@ -227,7 +339,7 @@
         private MenuStrip menu;
         private MenuStrip menuTitulo;
         private Label label1;
-        private FontAwesome.Sharp.IconMenuItem menuAcercade;
+        private FontAwesome.Sharp.IconMenuItem menuAcercaDe;
         private FontAwesome.Sharp.IconMenuItem menuUsuarios;
         private FontAwesome.Sharp.IconMenuItem menuMantenedor;
         private FontAwesome.Sharp.IconMenuItem menuVentas;
@@ -236,5 +348,13 @@
         private FontAwesome.Sharp.IconMenuItem menuProveedores;
         private FontAwesome.Sharp.IconMenuItem menuReportes;
         private Panel contenedor;
+        private Label lblUsuario;
+        private Label lblNombreUsuario;
+        private FontAwesome.Sharp.IconMenuItem subMenuCategoria;
+        private FontAwesome.Sharp.IconMenuItem subMenuProducto;
+        private FontAwesome.Sharp.IconMenuItem subMenuRegistrarVenta;
+        private FontAwesome.Sharp.IconMenuItem subMenuVerDetalleVenta;
+        private FontAwesome.Sharp.IconMenuItem subMenuRegistrarCompra;
+        private FontAwesome.Sharp.IconMenuItem subMenuVerDetalleCompra;
     }
 }

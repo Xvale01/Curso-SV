@@ -119,6 +119,7 @@
             btnIngresar.Cursor = Cursors.Hand;
             btnIngresar.FlatAppearance.BorderColor = Color.White;
             btnIngresar.FlatAppearance.BorderSize = 0;
+            btnIngresar.FlatStyle = FlatStyle.Flat;
             btnIngresar.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnIngresar.ForeColor = Color.White;
             btnIngresar.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
@@ -127,10 +128,10 @@
             btnIngresar.IconSize = 23;
             btnIngresar.Location = new Point(317, 172);
             btnIngresar.Name = "btnIngresar";
-            btnIngresar.Size = new Size(119, 34);
+            btnIngresar.Size = new Size(119, 31);
             btnIngresar.TabIndex = 8;
             btnIngresar.Text = "Ingresar";
-            btnIngresar.TextAlign = ContentAlignment.MiddleLeft;
+            btnIngresar.TextAlign = ContentAlignment.MiddleRight;
             btnIngresar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnIngresar.UseVisualStyleBackColor = false;
             btnIngresar.Click += iconButton1_Click;
@@ -150,6 +151,7 @@
             btnCancelar.Cursor = Cursors.Hand;
             btnCancelar.FlatAppearance.BorderColor = Color.White;
             btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
             btnCancelar.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelar.ForeColor = Color.White;
             btnCancelar.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
@@ -158,9 +160,10 @@
             btnCancelar.IconSize = 23;
             btnCancelar.Location = new Point(455, 172);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(119, 34);
+            btnCancelar.Size = new Size(119, 31);
             btnCancelar.TabIndex = 9;
             btnCancelar.Text = "Cancelar";
+            btnCancelar.TextAlign = ContentAlignment.MiddleRight;
             btnCancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click;
