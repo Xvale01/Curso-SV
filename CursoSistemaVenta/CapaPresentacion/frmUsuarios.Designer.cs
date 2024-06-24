@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             btnBuscar = new FontAwesome.Sharp.IconButton();
             btnSeleccionar = new DataGridViewButtonColumn();
             Id = new DataGridViewTextBoxColumn();
@@ -47,7 +47,6 @@
             cbBusqueda = new ComboBox();
             label11 = new Label();
             txtId = new TextBox();
-            label10 = new Label();
             txtIndice = new TextBox();
             label9 = new Label();
             btnEliminar = new FontAwesome.Sharp.IconButton();
@@ -68,6 +67,7 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            label10 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             SuspendLayout();
             // 
@@ -142,23 +142,23 @@
             // dgvUsuarios
             // 
             dgvUsuarios.AllowUserToAddRows = false;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.Padding = new Padding(2);
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgvUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUsuarios.Columns.AddRange(new DataGridViewColumn[] { btnSeleccionar, Id, Documento, NombreCompleto, Correo, Contrasenna, IdRol, Rol, EstadoValor, Estado });
             dgvUsuarios.Location = new Point(342, 86);
             dgvUsuarios.MultiSelect = false;
             dgvUsuarios.Name = "dgvUsuarios";
             dgvUsuarios.ReadOnly = true;
-            dataGridViewCellStyle8.SelectionBackColor = Color.LightSeaGreen;
-            dgvUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightSeaGreen;
+            dgvUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgvUsuarios.RowTemplate.Height = 28;
             dgvUsuarios.Size = new Size(861, 468);
             dgvUsuarios.TabIndex = 53;
@@ -238,18 +238,6 @@
             txtId.Size = new Size(26, 23);
             txtId.TabIndex = 55;
             txtId.Text = "0";
-            // 
-            // label10
-            // 
-            label10.BackColor = Color.LightSeaGreen;
-            label10.Font = new Font("Segoe UI Semibold", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.ForeColor = Color.White;
-            label10.Location = new Point(342, 27);
-            label10.Name = "label10";
-            label10.Size = new Size(353, 45);
-            label10.TabIndex = 54;
-            label10.Text = "Listado de usuarios";
-            label10.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtIndice
             // 
@@ -464,6 +452,18 @@
             label1.Size = new Size(323, 579);
             label1.TabIndex = 34;
             // 
+            // label10
+            // 
+            label10.BackColor = Color.LightSeaGreen;
+            label10.Font = new Font("Segoe UI Semibold", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.ForeColor = Color.White;
+            label10.Location = new Point(342, 27);
+            label10.Name = "label10";
+            label10.Size = new Size(353, 45);
+            label10.TabIndex = 54;
+            label10.Text = "Listado de usuarios";
+            label10.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // frmUsuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -525,7 +525,6 @@
         private ComboBox cbBusqueda;
         private Label label11;
         private TextBox txtId;
-        private Label label10;
         private TextBox txtIndice;
         private Label label9;
         private FontAwesome.Sharp.IconButton btnEliminar;
@@ -546,5 +545,6 @@
         private Label label3;
         private Label label2;
         private Label label1;
+        private Label label10;
     }
 }

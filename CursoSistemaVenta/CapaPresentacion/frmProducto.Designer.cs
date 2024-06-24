@@ -66,6 +66,7 @@
             label = new Label();
             lbNombre = new Label();
             label1 = new Label();
+            btnExportar = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)dgvProducto).BeginInit();
             SuspendLayout();
             // 
@@ -78,7 +79,7 @@
             btnBuscar.IconColor = Color.LightSeaGreen;
             btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnBuscar.IconSize = 22;
-            btnBuscar.Location = new Point(1139, 34);
+            btnBuscar.Location = new Point(1137, 34);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.RightToLeft = RightToLeft.No;
             btnBuscar.Size = new Size(30, 23);
@@ -102,7 +103,7 @@
             dgvProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvProducto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProducto.Columns.AddRange(new DataGridViewColumn[] { btnSeleccionar, Id, Codigo, Nombre, Descripcion, IdCategoria, Categoria, Stock, PrecioCompra, PrecioVenta, EstadoValor, Estado });
-            dgvProducto.Location = new Point(344, 86);
+            dgvProducto.Location = new Point(342, 86);
             dgvProducto.MultiSelect = false;
             dgvProducto.Name = "dgvProducto";
             dgvProducto.ReadOnly = true;
@@ -205,7 +206,7 @@
             btnLimpiarBuscador.IconColor = Color.LightSeaGreen;
             btnLimpiarBuscador.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnLimpiarBuscador.IconSize = 22;
-            btnLimpiarBuscador.Location = new Point(1175, 35);
+            btnLimpiarBuscador.Location = new Point(1173, 35);
             btnLimpiarBuscador.Name = "btnLimpiarBuscador";
             btnLimpiarBuscador.RightToLeft = RightToLeft.No;
             btnLimpiarBuscador.Size = new Size(30, 23);
@@ -217,7 +218,7 @@
             // 
             // txtBusqueda
             // 
-            txtBusqueda.Location = new Point(1013, 35);
+            txtBusqueda.Location = new Point(1011, 35);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.Size = new Size(120, 23);
             txtBusqueda.TabIndex = 58;
@@ -226,7 +227,7 @@
             // 
             cbBusqueda.DropDownStyle = ComboBoxStyle.DropDownList;
             cbBusqueda.FormattingEnabled = true;
-            cbBusqueda.Location = new Point(887, 34);
+            cbBusqueda.Location = new Point(885, 34);
             cbBusqueda.Name = "cbBusqueda";
             cbBusqueda.Size = new Size(120, 23);
             cbBusqueda.TabIndex = 57;
@@ -236,7 +237,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label11.ForeColor = Color.White;
-            label11.Location = new Point(804, 38);
+            label11.Location = new Point(802, 38);
             label11.Name = "label11";
             label11.Size = new Size(77, 19);
             label11.TabIndex = 56;
@@ -256,7 +257,7 @@
             label10.BackColor = Color.LightSeaGreen;
             label10.Font = new Font("Segoe UI Semibold", 20F, FontStyle.Bold, GraphicsUnit.Point);
             label10.ForeColor = Color.White;
-            label10.Location = new Point(344, 27);
+            label10.Location = new Point(342, 27);
             label10.Name = "label10";
             label10.Size = new Size(353, 45);
             label10.TabIndex = 54;
@@ -277,7 +278,7 @@
             label9.AutoSize = true;
             label9.BackColor = Color.White;
             label9.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(39, 27);
+            label9.Location = new Point(38, 27);
             label9.Name = "label9";
             label9.Size = new Size(181, 30);
             label9.TabIndex = 52;
@@ -291,7 +292,7 @@
             btnEliminar.IconColor = Color.White;
             btnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnEliminar.IconSize = 22;
-            btnEliminar.Location = new Point(39, 419);
+            btnEliminar.Location = new Point(38, 419);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.RightToLeft = RightToLeft.No;
             btnEliminar.Size = new Size(250, 31);
@@ -310,7 +311,7 @@
             btnLimpiar.IconColor = Color.White;
             btnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnLimpiar.IconSize = 22;
-            btnLimpiar.Location = new Point(39, 382);
+            btnLimpiar.Location = new Point(38, 382);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.RightToLeft = RightToLeft.No;
             btnLimpiar.Size = new Size(250, 31);
@@ -330,7 +331,7 @@
             btnGuardar.IconColor = Color.White;
             btnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnGuardar.IconSize = 22;
-            btnGuardar.Location = new Point(39, 345);
+            btnGuardar.Location = new Point(38, 345);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(250, 31);
             btnGuardar.TabIndex = 49;
@@ -344,7 +345,7 @@
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.White;
-            label8.Location = new Point(39, 288);
+            label8.Location = new Point(38, 288);
             label8.Name = "label8";
             label8.Size = new Size(42, 15);
             label8.TabIndex = 48;
@@ -354,7 +355,7 @@
             // 
             cbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             cbEstado.FormattingEnabled = true;
-            cbEstado.Location = new Point(39, 306);
+            cbEstado.Location = new Point(38, 306);
             cbEstado.Name = "cbEstado";
             cbEstado.Size = new Size(250, 23);
             cbEstado.TabIndex = 47;
@@ -363,7 +364,7 @@
             // 
             cbCategoría.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCategoría.FormattingEnabled = true;
-            cbCategoría.Location = new Point(39, 250);
+            cbCategoría.Location = new Point(38, 250);
             cbCategoría.Name = "cbCategoría";
             cbCategoría.Size = new Size(250, 23);
             cbCategoría.TabIndex = 46;
@@ -372,7 +373,7 @@
             // 
             label7.AutoSize = true;
             label7.BackColor = Color.White;
-            label7.Location = new Point(39, 232);
+            label7.Location = new Point(38, 232);
             label7.Name = "label7";
             label7.Size = new Size(58, 15);
             label7.TabIndex = 45;
@@ -380,21 +381,21 @@
             // 
             // txtDescripcion
             // 
-            txtDescripcion.Location = new Point(39, 195);
+            txtDescripcion.Location = new Point(38, 195);
             txtDescripcion.Name = "txtDescripcion";
             txtDescripcion.Size = new Size(250, 23);
             txtDescripcion.TabIndex = 41;
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(39, 140);
+            txtNombre.Location = new Point(38, 140);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(250, 23);
             txtNombre.TabIndex = 39;
             // 
             // txtCodigo
             // 
-            txtCodigo.Location = new Point(39, 86);
+            txtCodigo.Location = new Point(38, 86);
             txtCodigo.Name = "txtCodigo";
             txtCodigo.Size = new Size(250, 23);
             txtCodigo.TabIndex = 38;
@@ -403,7 +404,7 @@
             // 
             lbDescripcion.AutoSize = true;
             lbDescripcion.BackColor = Color.White;
-            lbDescripcion.Location = new Point(39, 177);
+            lbDescripcion.Location = new Point(38, 177);
             lbDescripcion.Name = "lbDescripcion";
             lbDescripcion.Size = new Size(69, 15);
             lbDescripcion.TabIndex = 37;
@@ -413,7 +414,7 @@
             // 
             label.AutoSize = true;
             label.BackColor = Color.White;
-            label.Location = new Point(39, 68);
+            label.Location = new Point(38, 68);
             label.Name = "label";
             label.Size = new Size(46, 15);
             label.TabIndex = 36;
@@ -423,7 +424,7 @@
             // 
             lbNombre.AutoSize = true;
             lbNombre.BackColor = Color.White;
-            lbNombre.Location = new Point(39, 122);
+            lbNombre.Location = new Point(38, 122);
             lbNombre.Name = "lbNombre";
             lbNombre.Size = new Size(51, 15);
             lbNombre.TabIndex = 35;
@@ -441,12 +442,32 @@
             label1.Size = new Size(323, 582);
             label1.TabIndex = 34;
             // 
+            // btnExportar
+            // 
+            btnExportar.BackColor = Color.White;
+            btnExportar.FlatStyle = FlatStyle.Flat;
+            btnExportar.ForeColor = Color.White;
+            btnExportar.IconChar = FontAwesome.Sharp.IconChar.Download;
+            btnExportar.IconColor = Color.LightSeaGreen;
+            btnExportar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnExportar.IconSize = 22;
+            btnExportar.Location = new Point(614, 40);
+            btnExportar.Name = "btnExportar";
+            btnExportar.RightToLeft = RightToLeft.No;
+            btnExportar.Size = new Size(30, 23);
+            btnExportar.TabIndex = 62;
+            btnExportar.TextAlign = ContentAlignment.MiddleRight;
+            btnExportar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnExportar.UseVisualStyleBackColor = false;
+            btnExportar.Click += btnExportar_Click;
+            // 
             // frmProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSeaGreen;
             ClientSize = new Size(1234, 582);
+            Controls.Add(btnExportar);
             Controls.Add(btnBuscar);
             Controls.Add(dgvProducto);
             Controls.Add(btnLimpiarBuscador);
@@ -517,5 +538,6 @@
         private DataGridViewTextBoxColumn PrecioVenta;
         private DataGridViewTextBoxColumn EstadoValor;
         private DataGridViewTextBoxColumn Estado;
+        private FontAwesome.Sharp.IconButton btnExportar;
     }
 }
