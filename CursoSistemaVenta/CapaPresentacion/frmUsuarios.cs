@@ -155,19 +155,64 @@ namespace CapaPresentacion
 
         }
 
+       
 
-
-        private void Limpiar()
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
-            txtIndice.Text = "-1";
-            txtId.Text = "0";
-            txtDocumento.Text = string.Empty;
-            txtNombreCompleto.Text = string.Empty;
-            txtCorreo.Text = string.Empty;
-            txtContrasenna.Text = string.Empty;
-            txtConfirmarContrasenna.Text = string.Empty;
-            cbEstado.SelectedIndex = 0;
-            cbRol.SelectedIndex = 0;
+            if (Convert.ToInt32(txtId.Text) != 0)
+            {
+                if (MessageBox.Show("¿Desea eliminar este usuario?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string mensaje = string.Empty;
+                    Usuario entidad = new Usuario()
+                    {
+                        IdUsuario = Convert.ToInt32(txtId.Text)
+                    };
+
+                    bool respuesta = new CN_Usuario().Eliminar(entidad, out mensaje);
+
+                    if (respuesta)
+                    {
+                        dgvUsuarios.Rows.RemoveAt(Convert.ToInt32(txtIndice.Text));
+                        Limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                }
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string columnaFiltro = ((OpcionCombo)cbBusqueda.SelectedItem).Valor.ToString();
+            if (dgvUsuarios.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dgvUsuarios.Rows)
+                {
+
+                    if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txtBusqueda.Text.Trim().ToUpper()))
+                        row.Visible = true;
+                    else
+                        row.Visible = false;
+                }
+            }
+        }
+
+        private void btnLimpiarBuscador_Click(object sender, EventArgs e)
+        {
+            txtBusqueda.Text = string.Empty;
+            foreach (DataGridViewRow row in dgvUsuarios.Rows)
+            {
+                row.Visible = true;
+            }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
         }
 
         private void dgvUsuarios_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -247,62 +292,17 @@ namespace CapaPresentacion
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void Limpiar()
         {
-            if (Convert.ToInt32(txtId.Text) != 0)
-            {
-                if (MessageBox.Show("¿Desea eliminar este usuario?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    string mensaje = string.Empty;
-                    Usuario entidad = new Usuario()
-                    {
-                        IdUsuario = Convert.ToInt32(txtId.Text)
-                    };
-
-                    bool respuesta = new CN_Usuario().Eliminar(entidad, out mensaje);
-
-                    if (respuesta)
-                    {
-                        dgvUsuarios.Rows.RemoveAt(Convert.ToInt32(txtIndice.Text));
-                        Limpiar();
-                    }
-                    else
-                    {
-                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-
-                }
-            }
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            string columnaFiltro = ((OpcionCombo)cbBusqueda.SelectedItem).Valor.ToString();
-            if (dgvUsuarios.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow row in dgvUsuarios.Rows)
-                {
-
-                    if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txtBusqueda.Text.Trim().ToUpper()))
-                        row.Visible = true;
-                    else
-                        row.Visible = false;
-                }
-            }
-        }
-
-        private void btnLimpiarBuscador_Click(object sender, EventArgs e)
-        {
-            txtBusqueda.Text = string.Empty;
-            foreach (DataGridViewRow row in dgvUsuarios.Rows)
-            {
-                row.Visible = true;
-            }
-        }
-
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            Limpiar();
+            txtIndice.Text = "-1";
+            txtId.Text = "0";
+            txtDocumento.Text = string.Empty;
+            txtNombreCompleto.Text = string.Empty;
+            txtCorreo.Text = string.Empty;
+            txtContrasenna.Text = string.Empty;
+            txtConfirmarContrasenna.Text = string.Empty;
+            cbEstado.SelectedIndex = 0;
+            cbRol.SelectedIndex = 0;
         }
 
     }

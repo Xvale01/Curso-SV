@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             btnBuscar = new FontAwesome.Sharp.IconButton();
             dgvProducto = new DataGridView();
             btnSeleccionar = new DataGridViewButtonColumn();
@@ -40,8 +40,8 @@
             IdCategoria = new DataGridViewTextBoxColumn();
             Categoria = new DataGridViewTextBoxColumn();
             Stock = new DataGridViewTextBoxColumn();
-            PrecioVenta = new DataGridViewTextBoxColumn();
             PrecioCompra = new DataGridViewTextBoxColumn();
+            PrecioVenta = new DataGridViewTextBoxColumn();
             EstadoValor = new DataGridViewTextBoxColumn();
             Estado = new DataGridViewTextBoxColumn();
             btnLimpiarBuscador = new FontAwesome.Sharp.IconButton();
@@ -86,30 +86,33 @@
             btnBuscar.TextAlign = ContentAlignment.MiddleRight;
             btnBuscar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnBuscar.UseVisualStyleBackColor = false;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // dgvProducto
             // 
             dgvProducto.AllowUserToAddRows = false;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvProducto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProducto.Columns.AddRange(new DataGridViewColumn[] { btnSeleccionar, Id, Codigo, Nombre, Descripcion, IdCategoria, Categoria, Stock, PrecioVenta, PrecioCompra, EstadoValor, Estado });
+            dgvProducto.Columns.AddRange(new DataGridViewColumn[] { btnSeleccionar, Id, Codigo, Nombre, Descripcion, IdCategoria, Categoria, Stock, PrecioCompra, PrecioVenta, EstadoValor, Estado });
             dgvProducto.Location = new Point(344, 86);
             dgvProducto.MultiSelect = false;
             dgvProducto.Name = "dgvProducto";
             dgvProducto.ReadOnly = true;
-            dataGridViewCellStyle4.SelectionBackColor = Color.LightSeaGreen;
-            dgvProducto.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightSeaGreen;
+            dgvProducto.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgvProducto.RowTemplate.Height = 28;
             dgvProducto.Size = new Size(861, 468);
             dgvProducto.TabIndex = 53;
+            dgvProducto.CellContentClick += dgvProducto_CellContentClick;
+            dgvProducto.CellPainting += dgvProducto_CellPainting;
             // 
             // btnSeleccionar
             // 
@@ -130,21 +133,20 @@
             Codigo.HeaderText = "Código";
             Codigo.Name = "Codigo";
             Codigo.ReadOnly = true;
-            Codigo.Width = 55;
+            Codigo.Width = 65;
             // 
             // Nombre
             // 
             Nombre.HeaderText = "Nombre";
             Nombre.Name = "Nombre";
             Nombre.ReadOnly = true;
-            Nombre.Width = 140;
             // 
             // Descripcion
             // 
             Descripcion.HeaderText = "Descripción";
             Descripcion.Name = "Descripcion";
             Descripcion.ReadOnly = true;
-            Descripcion.Width = 150;
+            Descripcion.Width = 175;
             // 
             // IdCategoria
             // 
@@ -158,20 +160,13 @@
             Categoria.HeaderText = "Categoría";
             Categoria.Name = "Categoria";
             Categoria.ReadOnly = true;
-            Categoria.Width = 90;
             // 
             // Stock
             // 
             Stock.HeaderText = "Stock";
             Stock.Name = "Stock";
             Stock.ReadOnly = true;
-            Stock.Width = 55;
-            // 
-            // PrecioVenta
-            // 
-            PrecioVenta.HeaderText = "Precio Venta";
-            PrecioVenta.Name = "PrecioVenta";
-            PrecioVenta.ReadOnly = true;
+            Stock.Width = 65;
             // 
             // PrecioCompra
             // 
@@ -179,6 +174,13 @@
             PrecioCompra.Name = "PrecioCompra";
             PrecioCompra.ReadOnly = true;
             PrecioCompra.Width = 113;
+            // 
+            // PrecioVenta
+            // 
+            PrecioVenta.HeaderText = "Precio Venta";
+            PrecioVenta.Name = "PrecioVenta";
+            PrecioVenta.ReadOnly = true;
+            PrecioVenta.Width = 113;
             // 
             // EstadoValor
             // 
@@ -211,6 +213,7 @@
             btnLimpiarBuscador.TextAlign = ContentAlignment.MiddleRight;
             btnLimpiarBuscador.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnLimpiarBuscador.UseVisualStyleBackColor = false;
+            btnLimpiarBuscador.Click += btnLimpiarBuscador_Click;
             // 
             // txtBusqueda
             // 
@@ -297,6 +300,7 @@
             btnEliminar.TextAlign = ContentAlignment.MiddleRight;
             btnEliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnLimpiar
             // 
@@ -509,8 +513,8 @@
         private DataGridViewTextBoxColumn IdCategoria;
         private DataGridViewTextBoxColumn Categoria;
         private DataGridViewTextBoxColumn Stock;
-        private DataGridViewTextBoxColumn PrecioVenta;
         private DataGridViewTextBoxColumn PrecioCompra;
+        private DataGridViewTextBoxColumn PrecioVenta;
         private DataGridViewTextBoxColumn EstadoValor;
         private DataGridViewTextBoxColumn Estado;
     }

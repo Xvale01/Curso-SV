@@ -328,6 +328,7 @@
             Name = "Inicio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
+            Load += Inicio_Load;
             menu.ResumeLayout(false);
             menu.PerformLayout();
             ResumeLayout(false);
