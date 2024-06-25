@@ -129,7 +129,7 @@ namespace CapaPresentacion
 
                 bool resultado = new CN_Usuario().Editar(entidad, out mensaje);
 
-                if (resultado = true)
+                if (resultado == true)
                 {
                     DataGridViewRow row = dgvUsuarios.Rows[Convert.ToInt32(txtIndice.Text)];
                     //Actualizaa el DataGridView

@@ -30,3 +30,5 @@ SELECT IdCategoria, Descripcion, Estado FROM Categoria
 
 SELECT IdProducto,Codigo,Nombre, p.Descripcion, c.IdCategoria, c.Descripcion 'DescripcionCategoria', Stock, PrecioCompra,PrecioVenta,p.Estado FROM Producto p
 INNER JOIN Categoria c ON c.IdCategoria = p.IdCategoria
+
+SELECT IdCliente, Documento, NombreCompleto, Correo, Telefono, Estado FROM Cliente

@@ -256,7 +256,7 @@ AS BEGIN
 
 	IF EXISTS (	SELECT * FROM DetalleCompra C 
 	INNER JOIN PRODUCTO P ON P.IdProducto = C.IdProducto
-	WHERE C.IdProducto != @IdProducto)
+	WHERE C.IdProducto = @IdProducto)
 	BEGIN 
 		SET @PasoReglas = 0
 		SET @Respuesta = 0;
@@ -265,7 +265,7 @@ AS BEGIN
 
 	IF EXISTS (	SELECT * FROM DetalleVenta V 
 	INNER JOIN PRODUCTO P ON P.IdProducto = V.IdProducto
-	WHERE V.IdProducto != @IdProducto)
+	WHERE V.IdProducto = @IdProducto)
 	BEGIN 
 		SET @PasoReglas = 0
 		SET @Respuesta = 0;
@@ -285,6 +285,61 @@ GO
 
 
 
+/* ----------------- CLIENTES ----------------- */
+CREATE PROCEDURE  SP_RegistrarCliente (
+@Documento VARCHAR(50),
+@NombreCompleto VARCHAR(50),
+@Correo VARCHAR(50),
+@Telefono VARCHAR(50),
+@Estado BIT,
+@Respuesta INT OUTPUT,
+@Mensaje VARCHAR(500) OUTPUT
+)
+AS BEGIN
+	SET @Respuesta = 0
+	DECLARE @IdPersona INT
+	IF NOT EXISTS (SELECT * FROM Cliente WHERE Documento = @Documento)
+	BEGIN 
+		INSERT INTO Cliente(Documento,NombreCompleto,Correo,Telefono,Estado)
+		VALUES (@Documento,@NombreCompleto,@Correo,@Telefono,@Estado)
+		SET @Respuesta = SCOPE_IDENTITY()
+	END
+	ELSE
+		SET @Mensaje = 'El número de documento ya existe'
+END
+GO
+
+
+CREATE PROCEDURE SP_EditarCliente (
+@IdCliente INT,
+@Documento VARCHAR(50),
+@NombreCompleto VARCHAR(50),
+@Correo VARCHAR(50),
+@Telefono VARCHAR(50),
+@Estado BIT,
+@Respuesta INT OUTPUT,
+@Mensaje VARCHAR(500) OUTPUT
+)
+AS BEGIN
+	SET @Respuesta = 1
+	IF NOT EXISTS (SELECT * FROM Cliente WHERE Documento = @Documento AND IdCliente != @IdCliente)
+		UPDATE Cliente SET
+		Documento = @Documento,
+		NombreCompleto = @NombreCompleto,
+		Correo = @Correo,
+		Telefono = @Telefono,
+		Estado = @Estado
+		WHERE IdCliente = @IdCliente
+	ELSE
+	BEGIN
+		SET @Respuesta = 0
+		SET @Mensaje = 'Ya existe un producto con el mismo código'
+	END
+
+END
+GO
+
+
 /* ----------------- VENTAS ----------------- */
 
 
@@ -293,7 +348,6 @@ GO
 
 /* ----------------- COMPRAS ----------------- */
 
-/* ----------------- CLIENTES ----------------- */
 
 /* ----------------- PROVEEDORES ----------------- */
 
