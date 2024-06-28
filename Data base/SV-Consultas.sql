@@ -13,6 +13,7 @@ SELECT * FROM Compra
 SELECT * FROM DetalleCompra
 SELECT * FROM Cliente
 SELECT * FROM Proveedor
+SELECT * FROM Negocio
 
 select p.IdRol, NombreMenu from Permiso p  
 inner join Rol r on r.IdRol = p.IdRol
@@ -32,3 +33,10 @@ SELECT IdProducto,Codigo,Nombre, p.Descripcion, c.IdCategoria, c.Descripcion 'De
 INNER JOIN Categoria c ON c.IdCategoria = p.IdCategoria
 
 SELECT IdCliente, Documento, NombreCompleto, Correo, Telefono, Estado FROM Cliente
+
+
+
+SELECT IdProveedor, Documento, RazonSocial, Correo, Telefono, Estado FROM Proveedor
+
+
+SELECT IdNegocio, Nombre, RUC, Direccion, Logo FROM Negocio WHERE IdNegocio = 1
