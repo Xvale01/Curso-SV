@@ -340,6 +340,89 @@ END
 GO
 
 
+
+/* ---------------- PROVEEDORES ---------------- */
+ALTER PROCEDURE  SP_RegistrarProveedor (
+@Documento VARCHAR(50),
+@RazonSocial VARCHAR(100),
+@Correo VARCHAR(50),
+@Telefono VARCHAR(50),
+@Estado BIT,
+@Respuesta INT OUTPUT,
+@Mensaje VARCHAR(500) OUTPUT
+)
+AS BEGIN
+	SET @Respuesta = 0
+	IF NOT EXISTS (SELECT * FROM Proveedor WHERE Documento = @Documento)
+	BEGIN 
+		INSERT INTO Proveedor(Documento,RazonSocial,Correo,Telefono,Estado)
+		VALUES (@Documento,@RazonSocial,@Correo,@Telefono,@Estado)
+		SET @Respuesta = SCOPE_IDENTITY()
+	END
+	ELSE
+		SET @Mensaje = 'El número de documento ya existe'
+END
+GO
+
+
+ALTER PROCEDURE SP_EditarProveedor(
+@IdProveedor INT,
+@Documento VARCHAR(50),
+@RazonSocial VARCHAR(100),
+@Correo VARCHAR(50),
+@Telefono VARCHAR(50),
+@Estado BIT,
+@Respuesta INT OUTPUT,
+@Mensaje VARCHAR(500) OUTPUT
+)
+AS BEGIN
+	SET @Respuesta = 1
+	IF NOT EXISTS (SELECT * FROM Proveedor WHERE Documento = @Documento AND IdProveedor != @IdProveedor)
+		UPDATE Proveedor SET
+		Documento = @Documento,
+		RazonSocial = @RazonSocial,
+		Correo = @Correo,
+		Telefono = @Telefono,
+		Estado = @Estado
+		WHERE IdProveedor = @IdProveedor
+	ELSE
+	BEGIN
+		SET @Respuesta = 0
+		SET @Mensaje = 'Ya existe un proveedor con el mismo docummento'
+	END
+
+END
+GO
+
+CREATE PROCEDURE SP_EliminarProveedor(
+@IdProveedor INT,
+@Respuesta INT OUTPUT,
+@Mensaje VARCHAR(500) OUTPUT
+)
+AS BEGIN
+	SET @Respuesta = 1;
+
+	IF NOT EXISTS (	SELECT * FROM Compra C 
+	INNER JOIN Proveedor P ON P.IdProveedor = C.IdProveedor
+	WHERE C.IdProveedor = @IdProveedor)
+	BEGIN
+		DELETE TOP(1) FROM Proveedor WHERE IdProveedor = @IdProveedor
+	END
+	ELSE
+	BEGIN
+		SET @Respuesta = 0;
+		SET @Mensaje = 'El proveedor se encuentra relaciondo con una compra'
+	END
+END
+GO
+
+
+
+
+
+
+
+
 /* ----------------- VENTAS ----------------- */
 
 
@@ -349,5 +432,5 @@ GO
 /* ----------------- COMPRAS ----------------- */
 
 
-/* ----------------- PROVEEDORES ----------------- */
+
 

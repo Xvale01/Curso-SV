@@ -39,3 +39,4 @@ INSERT INTO Permiso (IdRol,NombreMenu) VALUES
 
 
 INSERT INTO Producto (Codigo,Nombre,Descripcion,IdCategoria,Estado) VALUES ('10' , 'Leche' , '1 litro', 5 , 1)
+INSERT INTO Negocio (IdNegocio,Nombre,RUC,Direccion) VALUES (1, 'Sistema de Venta' , '101010', 'av. codigo')

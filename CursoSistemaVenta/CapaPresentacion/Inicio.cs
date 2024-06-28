@@ -153,5 +153,10 @@ namespace CapaPresentacion
         {
 
         }
+
+        private void subMenuNegocio_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menuMantenedor, new frmNegocio());
+        }
     }
 }

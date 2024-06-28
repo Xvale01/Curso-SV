@@ -98,7 +98,6 @@ FechaRegistro datetime default getdate()
 )
 GO
 
-
 CREATE TABLE Venta (
 IdVenta int primary key identity,
 IdUsuario int references Usuario(IdUsuario),
@@ -123,3 +122,11 @@ SubTotal decimal(10,2),
 FechaRegistro datetime default getdate()
 )
 GO
+
+CREATE TABLE NEGOCIO (
+IdNegocio int primary key,
+Nombre varchar(60),
+RUC varchar(60),
+Direccion varchar(60),
+Logo varbinary(max) NULL
+)
