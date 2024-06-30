@@ -455,7 +455,7 @@ BEGIN
 
 			SET @idcompra = SCOPE_IDENTITY()
 
-			INSERT INTO DETALLE_COMPRA(IdCompra, IdProducto,PrecioCompra,PrecioVenta,Cantidad,MontoTotal)
+			INSERT INTO DetalleCompra(IdCompra, IdProducto,PrecioCompra,PrecioVenta,Cantidad,MontoTotal)
 			SELECT @idcompra, IdProducto, PrecioCompra, PrecioVenta, Cantidad, MontoTotal FROM @DetalleCompra
 
 			UPDATE p SET p.Stock = p.Stock + dc.Cantidad,
@@ -489,3 +489,8 @@ END
 
 
 
+
+
+select count(*) + 1 from COMPRA
+
+SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'DetalleCompra';

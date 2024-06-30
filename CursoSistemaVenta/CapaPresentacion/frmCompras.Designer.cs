@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             label10 = new Label();
             label1 = new Label();
             groupBox1 = new GroupBox();
@@ -68,7 +68,7 @@
             btnAgregarProducto = new FontAwesome.Sharp.IconButton();
             txtTotalPagar = new TextBox();
             label12 = new Label();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
+            btnRegistrar = new FontAwesome.Sharp.IconButton();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -354,21 +354,21 @@
             // dgvCompras
             // 
             dgvCompras.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvCompras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCompras.Columns.AddRange(new DataGridViewColumn[] { IdProducto, Producto, PrecioCompra, PrecioVenta, Cantidad, SubTotal, btnEliminar });
             dgvCompras.Location = new Point(209, 268);
             dgvCompras.Name = "dgvCompras";
-            dataGridViewCellStyle2.SelectionBackColor = Color.LightSeaGreen;
-            dgvCompras.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.SelectionBackColor = Color.LightSeaGreen;
+            dgvCompras.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvCompras.RowTemplate.Height = 25;
             dgvCompras.Size = new Size(710, 302);
             dgvCompras.TabIndex = 64;
@@ -453,23 +453,24 @@
             label12.TabIndex = 69;
             label12.Text = "Total a pagar:";
             // 
-            // iconButton1
+            // btnRegistrar
             // 
-            iconButton1.BackColor = Color.LightSeaGreen;
-            iconButton1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            iconButton1.ForeColor = Color.White;
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.Tag;
-            iconButton1.IconColor = Color.White;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.IconSize = 22;
-            iconButton1.Location = new Point(931, 529);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new Size(100, 41);
-            iconButton1.TabIndex = 71;
-            iconButton1.Text = "Registrar";
-            iconButton1.TextAlign = ContentAlignment.MiddleRight;
-            iconButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton1.UseVisualStyleBackColor = false;
+            btnRegistrar.BackColor = Color.LightSeaGreen;
+            btnRegistrar.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRegistrar.ForeColor = Color.White;
+            btnRegistrar.IconChar = FontAwesome.Sharp.IconChar.Tag;
+            btnRegistrar.IconColor = Color.White;
+            btnRegistrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnRegistrar.IconSize = 22;
+            btnRegistrar.Location = new Point(931, 529);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(100, 41);
+            btnRegistrar.TabIndex = 71;
+            btnRegistrar.Text = "Registrar";
+            btnRegistrar.TextAlign = ContentAlignment.MiddleRight;
+            btnRegistrar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnRegistrar.UseVisualStyleBackColor = false;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // frmCompras
             // 
@@ -477,7 +478,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1215, 611);
-            Controls.Add(iconButton1);
+            Controls.Add(btnRegistrar);
             Controls.Add(txtTotalPagar);
             Controls.Add(label12);
             Controls.Add(btnAgregarProducto);
@@ -535,7 +536,7 @@
         private FontAwesome.Sharp.IconButton btnAgregarProducto;
         private TextBox txtTotalPagar;
         private Label label12;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnRegistrar;
         private DataGridViewTextBoxColumn IdProducto;
         private DataGridViewTextBoxColumn Producto;
         private DataGridViewTextBoxColumn PrecioCompra;
