@@ -32,6 +32,14 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             btnBuscar = new FontAwesome.Sharp.IconButton();
             dgvProveedores = new DataGridView();
+            btnSeleccionar = new DataGridViewButtonColumn();
+            Id = new DataGridViewTextBoxColumn();
+            Documento = new DataGridViewTextBoxColumn();
+            RazonSocial = new DataGridViewTextBoxColumn();
+            Correo = new DataGridViewTextBoxColumn();
+            Telefono = new DataGridViewTextBoxColumn();
+            EstadoValor = new DataGridViewTextBoxColumn();
+            Estado = new DataGridViewTextBoxColumn();
             btnLimpiarBuscador = new FontAwesome.Sharp.IconButton();
             txtBusqueda = new TextBox();
             cbBusqueda = new ComboBox();
@@ -54,14 +62,6 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            btnSeleccionar = new DataGridViewButtonColumn();
-            Id = new DataGridViewTextBoxColumn();
-            Documento = new DataGridViewTextBoxColumn();
-            RazonSocial = new DataGridViewTextBoxColumn();
-            Correo = new DataGridViewTextBoxColumn();
-            Telefono = new DataGridViewTextBoxColumn();
-            EstadoValor = new DataGridViewTextBoxColumn();
-            Estado = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvProveedores).BeginInit();
             SuspendLayout();
             // 
@@ -109,6 +109,60 @@
             dgvProveedores.TabIndex = 81;
             dgvProveedores.CellContentClick += dgvProveedores_CellContentClick;
             dgvProveedores.CellPainting += dgvProveedores_CellPainting;
+            // 
+            // btnSeleccionar
+            // 
+            btnSeleccionar.HeaderText = "";
+            btnSeleccionar.Name = "btnSeleccionar";
+            btnSeleccionar.ReadOnly = true;
+            btnSeleccionar.Width = 30;
+            // 
+            // Id
+            // 
+            Id.HeaderText = "IdProveedor";
+            Id.Name = "Id";
+            Id.ReadOnly = true;
+            Id.Visible = false;
+            // 
+            // Documento
+            // 
+            Documento.HeaderText = "Nº Documento";
+            Documento.Name = "Documento";
+            Documento.ReadOnly = true;
+            Documento.Width = 120;
+            // 
+            // RazonSocial
+            // 
+            RazonSocial.HeaderText = "Razón Social";
+            RazonSocial.Name = "RazonSocial";
+            RazonSocial.ReadOnly = true;
+            RazonSocial.Width = 220;
+            // 
+            // Correo
+            // 
+            Correo.HeaderText = "Correo";
+            Correo.Name = "Correo";
+            Correo.ReadOnly = true;
+            Correo.Width = 220;
+            // 
+            // Telefono
+            // 
+            Telefono.HeaderText = "Teléfono";
+            Telefono.Name = "Telefono";
+            Telefono.ReadOnly = true;
+            // 
+            // EstadoValor
+            // 
+            EstadoValor.HeaderText = "Estado Valor";
+            EstadoValor.Name = "EstadoValor";
+            EstadoValor.ReadOnly = true;
+            EstadoValor.Visible = false;
+            // 
+            // Estado
+            // 
+            Estado.HeaderText = "Estado";
+            Estado.Name = "Estado";
+            Estado.ReadOnly = true;
             // 
             // btnLimpiarBuscador
             // 
@@ -350,60 +404,6 @@
             label1.Name = "label1";
             label1.Size = new Size(323, 579);
             label1.TabIndex = 62;
-            // 
-            // btnSeleccionar
-            // 
-            btnSeleccionar.HeaderText = "";
-            btnSeleccionar.Name = "btnSeleccionar";
-            btnSeleccionar.ReadOnly = true;
-            btnSeleccionar.Width = 30;
-            // 
-            // Id
-            // 
-            Id.HeaderText = "IdProveedor";
-            Id.Name = "Id";
-            Id.ReadOnly = true;
-            Id.Visible = false;
-            // 
-            // Documento
-            // 
-            Documento.HeaderText = "Nº Documento";
-            Documento.Name = "Documento";
-            Documento.ReadOnly = true;
-            Documento.Width = 120;
-            // 
-            // RazonSocial
-            // 
-            RazonSocial.HeaderText = "Razón Social";
-            RazonSocial.Name = "RazonSocial";
-            RazonSocial.ReadOnly = true;
-            RazonSocial.Width = 220;
-            // 
-            // Correo
-            // 
-            Correo.HeaderText = "Correo";
-            Correo.Name = "Correo";
-            Correo.ReadOnly = true;
-            Correo.Width = 220;
-            // 
-            // Telefono
-            // 
-            Telefono.HeaderText = "Teléfono";
-            Telefono.Name = "Telefono";
-            Telefono.ReadOnly = true;
-            // 
-            // EstadoValor
-            // 
-            EstadoValor.HeaderText = "Estado Valor";
-            EstadoValor.Name = "EstadoValor";
-            EstadoValor.ReadOnly = true;
-            EstadoValor.Visible = false;
-            // 
-            // Estado
-            // 
-            Estado.HeaderText = "Estado";
-            Estado.Name = "Estado";
-            Estado.ReadOnly = true;
             // 
             // frmProveedores
             // 

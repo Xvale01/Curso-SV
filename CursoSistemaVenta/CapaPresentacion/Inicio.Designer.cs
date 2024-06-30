@@ -33,6 +33,7 @@
             menuMantenedor = new FontAwesome.Sharp.IconMenuItem();
             subMenuCategoria = new FontAwesome.Sharp.IconMenuItem();
             subMenuProducto = new FontAwesome.Sharp.IconMenuItem();
+            subMenuNegocio = new ToolStripMenuItem();
             menuVentas = new FontAwesome.Sharp.IconMenuItem();
             subMenuRegistrarVenta = new FontAwesome.Sharp.IconMenuItem();
             subMenuVerDetalleVenta = new FontAwesome.Sharp.IconMenuItem();
@@ -48,7 +49,6 @@
             contenedor = new Panel();
             lblUsuario = new Label();
             lblNombreUsuario = new Label();
-            subMenuNegocio = new ToolStripMenuItem();
             menu.SuspendLayout();
             SuspendLayout();
             // 
@@ -101,7 +101,7 @@
             subMenuCategoria.IconColor = Color.Black;
             subMenuCategoria.IconFont = FontAwesome.Sharp.IconFont.Auto;
             subMenuCategoria.Name = "subMenuCategoria";
-            subMenuCategoria.Size = new Size(180, 22);
+            subMenuCategoria.Size = new Size(133, 22);
             subMenuCategoria.Text = "Categoría";
             subMenuCategoria.Click += subMenuCategoria_Click;
             // 
@@ -112,9 +112,17 @@
             subMenuProducto.IconColor = Color.Black;
             subMenuProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             subMenuProducto.Name = "subMenuProducto";
-            subMenuProducto.Size = new Size(180, 22);
+            subMenuProducto.Size = new Size(133, 22);
             subMenuProducto.Text = "Producto";
             subMenuProducto.Click += subMenuProducto_Click;
+            // 
+            // subMenuNegocio
+            // 
+            subMenuNegocio.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            subMenuNegocio.Name = "subMenuNegocio";
+            subMenuNegocio.Size = new Size(133, 22);
+            subMenuNegocio.Text = "Negocio";
+            subMenuNegocio.Click += subMenuNegocio_Click;
             // 
             // menuVentas
             // 
@@ -139,7 +147,7 @@
             subMenuRegistrarVenta.IconColor = Color.Black;
             subMenuRegistrarVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
             subMenuRegistrarVenta.Name = "subMenuRegistrarVenta";
-            subMenuRegistrarVenta.Size = new Size(180, 22);
+            subMenuRegistrarVenta.Size = new Size(164, 22);
             subMenuRegistrarVenta.Text = "Registrar venta";
             subMenuRegistrarVenta.Click += subMenuRegistrarVenta_Click;
             // 
@@ -150,7 +158,7 @@
             subMenuVerDetalleVenta.IconColor = Color.Black;
             subMenuVerDetalleVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
             subMenuVerDetalleVenta.Name = "subMenuVerDetalleVenta";
-            subMenuVerDetalleVenta.Size = new Size(180, 22);
+            subMenuVerDetalleVenta.Size = new Size(164, 22);
             subMenuVerDetalleVenta.Text = "Ver detalle";
             subMenuVerDetalleVenta.Click += subMenuVerDetalleVenta_Click;
             // 
@@ -284,7 +292,7 @@
             contenedor.Dock = DockStyle.Fill;
             contenedor.Location = new Point(0, 136);
             contenedor.Name = "contenedor";
-            contenedor.Size = new Size(1282, 593);
+            contenedor.Size = new Size(1282, 603);
             contenedor.TabIndex = 3;
             contenedor.Paint += contenedor_Paint;
             // 
@@ -314,19 +322,11 @@
             lblNombreUsuario.Text = "Juanito";
             lblNombreUsuario.Click += lblNombreUsuario_Click;
             // 
-            // subMenuNegocio
-            // 
-            subMenuNegocio.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            subMenuNegocio.Name = "subMenuNegocio";
-            subMenuNegocio.Size = new Size(180, 22);
-            subMenuNegocio.Text = "Negocio";
-            subMenuNegocio.Click += subMenuNegocio_Click;
-            // 
             // Inicio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1282, 729);
+            ClientSize = new Size(1282, 739);
             Controls.Add(lblNombreUsuario);
             Controls.Add(lblUsuario);
             Controls.Add(contenedor);

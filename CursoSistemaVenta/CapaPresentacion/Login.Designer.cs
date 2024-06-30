@@ -62,7 +62,6 @@
             label2.TabIndex = 2;
             label2.Text = "Sistema de venta";
             label2.TextAlign = ContentAlignment.TopCenter;
-            label2.Click += label2_Click_1;
             // 
             // iconPictureBox1
             // 
@@ -76,7 +75,6 @@
             iconPictureBox1.Size = new Size(231, 201);
             iconPictureBox1.TabIndex = 3;
             iconPictureBox1.TabStop = false;
-            iconPictureBox1.Click += iconPictureBox1_Click;
             // 
             // txtDocumento
             // 
@@ -187,7 +185,6 @@
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
-            Load += Login_Load;
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

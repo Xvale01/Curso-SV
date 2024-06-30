@@ -160,6 +160,7 @@
             dataGridViewCellStyle2.SelectionBackColor = Color.LightSeaGreen;
             dgvUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgvUsuarios.RowTemplate.Height = 28;
+            dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUsuarios.Size = new Size(861, 468);
             dgvUsuarios.TabIndex = 53;
             dgvUsuarios.CellContentClick += dgvUsuarios_CellContentClick;

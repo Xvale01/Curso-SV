@@ -16,39 +16,24 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void iconPictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-    
-
         //boton de ingresar
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            List<Usuario> TEST = new CN_Usuario().Listar();
-            Usuario oUsuario = new CN_Usuario().Listar().Where(u => u.Documento == txtDocumento.Text && u.Clave == txtContrasenna.Text).FirstOrDefault();
-            
+            Usuario entidad = new CN_Usuario().Listar().Where(u => u.Documento == txtDocumento.Text && u.Clave == txtContrasenna.Text).FirstOrDefault();
 
-            Inicio form = new Inicio(oUsuario);
-            form.Show();
-            this.Hide();
+            if (entidad != null)
+            {
+                Inicio form = new Inicio(entidad);
+                form.Show();
+                this.Hide();
 
-            form.FormClosing += frm_closing;
+                form.FormClosing += frm_closing;
+            }
+            else
+            {
+                MessageBox.Show("No se encontro el usuario", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
         }
 
         private void frm_closing(object sender, FormClosingEventArgs e)
