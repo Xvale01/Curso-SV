@@ -43,26 +43,6 @@ namespace CapaPresentacion
             lblNombreUsuario.Text = usuarioActual.NombreCompleto;
         }
 
-        private void menuTitulo_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void contenedor_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblNombreUsuario_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void AbrirFormulario(IconMenuItem iconMenuItem, Form form)
         {
             if (menuActual != null)
@@ -106,7 +86,7 @@ namespace CapaPresentacion
 
         private void subMenuRegistrarVenta_Click(object sender, EventArgs e)
         {
-            AbrirFormulario(menuVentas, new frmVentas());
+            AbrirFormulario(menuVentas, new frmVentas(usuarioActual));
 
         }
 

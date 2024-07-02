@@ -85,7 +85,7 @@
             dgvProveedores.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.LightSeaGreen;
             dgvProveedores.RowTemplate.Height = 28;
             dgvProveedores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProveedores.Size = new Size(538, 452);
+            dgvProveedores.Size = new Size(491, 452);
             dgvProveedores.TabIndex = 89;
             dgvProveedores.CellDoubleClick += dgvProveedores_CellDoubleClick;
             // 
@@ -108,7 +108,7 @@
             RazonSocial.HeaderText = "Razón Social";
             RazonSocial.Name = "RazonSocial";
             RazonSocial.ReadOnly = true;
-            RazonSocial.Width = 250;
+            RazonSocial.Width = 300;
             // 
             // btnLimpiarBuscador
             // 
@@ -194,13 +194,13 @@
 
         private FontAwesome.Sharp.IconButton btnBuscar;
         private DataGridView dgvProveedores;
-        private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn Documento;
-        private DataGridViewTextBoxColumn RazonSocial;
         private FontAwesome.Sharp.IconButton btnLimpiarBuscador;
         private TextBox txtBusqueda;
         private ComboBox cbBusqueda;
         private Label label11;
         private Label label10;
+        private DataGridViewTextBoxColumn Id;
+        private DataGridViewTextBoxColumn Documento;
+        private DataGridViewTextBoxColumn RazonSocial;
     }
 }

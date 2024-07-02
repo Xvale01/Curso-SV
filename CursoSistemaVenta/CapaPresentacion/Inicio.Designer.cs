@@ -273,7 +273,6 @@
             menuTitulo.Size = new Size(1282, 63);
             menuTitulo.TabIndex = 1;
             menuTitulo.Text = "menuTitulo";
-            menuTitulo.ItemClicked += menuTitulo_ItemClicked;
             // 
             // label1
             // 
@@ -294,7 +293,6 @@
             contenedor.Name = "contenedor";
             contenedor.Size = new Size(1282, 603);
             contenedor.TabIndex = 3;
-            contenedor.Paint += contenedor_Paint;
             // 
             // lblUsuario
             // 
@@ -307,7 +305,6 @@
             lblUsuario.Size = new Size(59, 19);
             lblUsuario.TabIndex = 4;
             lblUsuario.Text = "Usuario:";
-            lblUsuario.Click += label2_Click;
             // 
             // lblNombreUsuario
             // 
@@ -320,7 +317,6 @@
             lblNombreUsuario.Size = new Size(53, 19);
             lblNombreUsuario.TabIndex = 5;
             lblNombreUsuario.Text = "Juanito";
-            lblNombreUsuario.Click += lblNombreUsuario_Click;
             // 
             // Inicio
             // 
