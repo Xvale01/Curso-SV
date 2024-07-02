@@ -416,9 +416,12 @@ AS BEGIN
 END
 GO
 
+
+
+
 /* ----------------- COMPRAS ----------------- */
 
-/* PROCESOS PARA REGISTRAR UNA COMPRA */
+
 
 CREATE TYPE [dbo].[EDetalle_Compra] AS TABLE(
 [IdProducto] int NULL,
@@ -429,7 +432,7 @@ CREATE TYPE [dbo].[EDetalle_Compra] AS TABLE(
 )
 GO
 
-CREATE PROCEDURE sp_RegistrarCompra(
+ALTER PROCEDURE sp_RegistrarCompra(
 @idUsuario int,
 @IdProveedor int,
 @TipoDocumento varchar(500),
@@ -482,8 +485,6 @@ END
 
 
 
-
-
 /* ----------------- VENTAS ----------------- */
 
 
@@ -491,6 +492,4 @@ END
 
 
 
-select count(*) + 1 from COMPRA
 
-SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'DetalleCompra';

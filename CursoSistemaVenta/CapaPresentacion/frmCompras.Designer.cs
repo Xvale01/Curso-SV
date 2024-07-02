@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             label10 = new Label();
             label1 = new Label();
             groupBox1 = new GroupBox();
@@ -81,9 +81,9 @@
             label10.BackColor = Color.White;
             label10.Font = new Font("Segoe UI Semibold", 20F, FontStyle.Bold, GraphicsUnit.Point);
             label10.ForeColor = Color.White;
-            label10.Location = new Point(177, 21);
+            label10.Location = new Point(170, 21);
             label10.Name = "label10";
-            label10.Size = new Size(875, 567);
+            label10.Size = new Size(895, 567);
             label10.TabIndex = 55;
             label10.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -167,6 +167,7 @@
             txtIdProveedor.Name = "txtIdProveedor";
             txtIdProveedor.Size = new Size(26, 23);
             txtIdProveedor.TabIndex = 61;
+            txtIdProveedor.Visible = false;
             // 
             // btnBuscarProveedor
             // 
@@ -298,6 +299,7 @@
             txtIdProducto.Name = "txtIdProducto";
             txtIdProducto.Size = new Size(26, 23);
             txtIdProducto.TabIndex = 61;
+            txtIdProducto.Visible = false;
             // 
             // btnBuscarProducto
             // 
@@ -354,21 +356,21 @@
             // dgvCompras
             // 
             dgvCompras.AllowUserToAddRows = false;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvCompras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCompras.Columns.AddRange(new DataGridViewColumn[] { IdProducto, Producto, PrecioCompra, PrecioVenta, Cantidad, SubTotal, btnEliminar });
             dgvCompras.Location = new Point(209, 268);
             dgvCompras.Name = "dgvCompras";
-            dataGridViewCellStyle4.SelectionBackColor = Color.LightSeaGreen;
-            dgvCompras.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightSeaGreen;
+            dgvCompras.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgvCompras.RowTemplate.Height = 25;
             dgvCompras.Size = new Size(710, 302);
             dgvCompras.TabIndex = 64;
@@ -438,7 +440,7 @@
             // 
             // txtTotalPagar
             // 
-            txtTotalPagar.Location = new Point(931, 497);
+            txtTotalPagar.Location = new Point(931, 511);
             txtTotalPagar.Name = "txtTotalPagar";
             txtTotalPagar.Size = new Size(100, 23);
             txtTotalPagar.TabIndex = 70;
@@ -447,7 +449,7 @@
             // 
             label12.AutoSize = true;
             label12.BackColor = Color.White;
-            label12.Location = new Point(931, 479);
+            label12.Location = new Point(931, 493);
             label12.Name = "label12";
             label12.Size = new Size(77, 15);
             label12.TabIndex = 69;
@@ -462,9 +464,9 @@
             btnRegistrar.IconColor = Color.White;
             btnRegistrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnRegistrar.IconSize = 22;
-            btnRegistrar.Location = new Point(931, 529);
+            btnRegistrar.Location = new Point(931, 540);
             btnRegistrar.Name = "btnRegistrar";
-            btnRegistrar.Size = new Size(100, 41);
+            btnRegistrar.Size = new Size(100, 30);
             btnRegistrar.TabIndex = 71;
             btnRegistrar.Text = "Registrar";
             btnRegistrar.TextAlign = ContentAlignment.MiddleRight;
