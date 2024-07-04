@@ -64,3 +64,5 @@ INNER JOIN Producto p ON p.IdProducto = dc.IdProducto
 WHERE dc.IdCompra = 12
 
 
+
+SELECT * FROM Producto

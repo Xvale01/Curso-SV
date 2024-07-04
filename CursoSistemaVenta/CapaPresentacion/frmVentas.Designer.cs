@@ -88,11 +88,11 @@
             btnCrearVenta.IconColor = Color.White;
             btnCrearVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCrearVenta.IconSize = 20;
-            btnCrearVenta.Location = new Point(921, 541);
+            btnCrearVenta.Location = new Point(921, 539);
             btnCrearVenta.Name = "btnCrearVenta";
-            btnCrearVenta.Size = new Size(100, 30);
+            btnCrearVenta.Size = new Size(113, 32);
             btnCrearVenta.TabIndex = 81;
-            btnCrearVenta.Text = "Registrar";
+            btnCrearVenta.Text = "Crear venta";
             btnCrearVenta.TextAlign = ContentAlignment.MiddleRight;
             btnCrearVenta.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCrearVenta.UseVisualStyleBackColor = false;
@@ -100,9 +100,9 @@
             // 
             // txtCambio
             // 
-            txtCambio.Location = new Point(921, 502);
+            txtCambio.Location = new Point(921, 500);
             txtCambio.Name = "txtCambio";
-            txtCambio.Size = new Size(100, 23);
+            txtCambio.Size = new Size(113, 23);
             txtCambio.TabIndex = 80;
             // 
             // btnAgregar
@@ -128,7 +128,7 @@
             // 
             label12.AutoSize = true;
             label12.BackColor = Color.White;
-            label12.Location = new Point(921, 484);
+            label12.Location = new Point(921, 482);
             label12.Name = "label12";
             label12.Size = new Size(52, 15);
             label12.TabIndex = 79;
@@ -381,9 +381,8 @@
             // 
             txtIdProducto.Location = new Point(114, 20);
             txtIdProducto.Name = "txtIdProducto";
-            txtIdProducto.Size = new Size(26, 23);
+            txtIdProducto.Size = new Size(40, 23);
             txtIdProducto.TabIndex = 61;
-            txtIdProducto.Visible = false;
             // 
             // btnBuscarProducto
             // 
@@ -472,16 +471,16 @@
             // 
             // txtTotalPagar
             // 
-            txtTotalPagar.Location = new Point(921, 381);
+            txtTotalPagar.Location = new Point(921, 379);
             txtTotalPagar.Name = "txtTotalPagar";
-            txtTotalPagar.Size = new Size(100, 23);
+            txtTotalPagar.Size = new Size(113, 23);
             txtTotalPagar.TabIndex = 84;
             // 
             // label13
             // 
             label13.AutoSize = true;
             label13.BackColor = Color.White;
-            label13.Location = new Point(921, 363);
+            label13.Location = new Point(921, 361);
             label13.Name = "label13";
             label13.Size = new Size(77, 15);
             label13.TabIndex = 83;
@@ -491,7 +490,7 @@
             // 
             label14.AutoSize = true;
             label14.BackColor = Color.White;
-            label14.Location = new Point(921, 423);
+            label14.Location = new Point(921, 421);
             label14.Name = "label14";
             label14.Size = new Size(59, 15);
             label14.TabIndex = 83;
@@ -499,9 +498,9 @@
             // 
             // txtPagaCon
             // 
-            txtPagaCon.Location = new Point(921, 441);
+            txtPagaCon.Location = new Point(921, 439);
             txtPagaCon.Name = "txtPagaCon";
-            txtPagaCon.Size = new Size(100, 23);
+            txtPagaCon.Size = new Size(113, 23);
             txtPagaCon.TabIndex = 84;
             txtPagaCon.KeyDown += txtPagaCon_KeyDown;
             txtPagaCon.KeyPress += txtPagaCon_KeyPress;

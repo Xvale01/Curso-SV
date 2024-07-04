@@ -16,5 +16,10 @@ namespace CapaPresentacion
         {
             InitializeComponent();
         }
+
+        private void txtMontoCambio_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
