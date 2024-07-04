@@ -33,16 +33,16 @@ namespace CapaNegocio
             return capaDatos.Registrar(entidad, DetalleVenta, out Mensaje);
         }
 
-        //public Venta ObtenerVenta(string numero)
-        //{
-        //    Venta oVenta = capaDatos.ObtenerVenta(numero);
-        //    if (oVenta.IdVenta != 0)
-        //    {
-        //        List<Detalle_Venta> oDetalleVenta = capaDatos.ListadoDetalleVenta(oVenta.IdVenta);
-        //        oVenta.oDetalleVenta = oDetalleVenta;
-        //    }
+        public Venta ObtenerVenta(string numero)
+        {
+            Venta oVenta = capaDatos.ObtenerVenta(numero);
+            if (oVenta.IdVenta != 0)
+            {
+                List<Detalle_Venta> oDetalleVenta = capaDatos.ListadoDetalleVenta(oVenta.IdVenta);
+                oVenta.oDetalleVenta = oDetalleVenta;
+            }
 
-        //    return oVenta;
-        //}
+            return oVenta;
+        }
     }
 }

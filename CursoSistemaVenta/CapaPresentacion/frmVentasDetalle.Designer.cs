@@ -28,13 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             btnDescargar = new FontAwesome.Sharp.IconButton();
             txtMontoTotal = new TextBox();
-            dgvDetalleCompras = new DataGridView();
+            dgvDetalleVenta = new DataGridView();
+            Producto = new DataGridViewTextBoxColumn();
+            Precio = new DataGridViewTextBoxColumn();
+            Cantidad = new DataGridViewTextBoxColumn();
+            SubTotal = new DataGridViewTextBoxColumn();
             txtNumeroDocumento = new TextBox();
-            txtNombreProveedor = new TextBox();
+            txtNombreCliente = new TextBox();
             txtDocCliente = new TextBox();
             label8 = new Label();
             label9 = new Label();
@@ -57,11 +61,7 @@
             label7 = new Label();
             label10 = new Label();
             txtMontoPago = new TextBox();
-            Producto = new DataGridViewTextBoxColumn();
-            Precio = new DataGridViewTextBoxColumn();
-            Cantidad = new DataGridViewTextBoxColumn();
-            SubTotal = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dgvDetalleCompras).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDetalleVenta).BeginInit();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -83,6 +83,7 @@
             btnDescargar.TextAlign = ContentAlignment.MiddleRight;
             btnDescargar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDescargar.UseVisualStyleBackColor = false;
+            btnDescargar.Click += btnDescargar_Click;
             // 
             // txtMontoTotal
             // 
@@ -91,27 +92,51 @@
             txtMontoTotal.Size = new Size(77, 23);
             txtMontoTotal.TabIndex = 84;
             // 
-            // dgvDetalleCompras
+            // dgvDetalleVenta
             // 
-            dgvDetalleCompras.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvDetalleCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgvDetalleCompras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDetalleCompras.Columns.AddRange(new DataGridViewColumn[] { Producto, Precio, Cantidad, SubTotal });
-            dgvDetalleCompras.Location = new Point(213, 202);
-            dgvDetalleCompras.Name = "dgvDetalleCompras";
-            dataGridViewCellStyle2.SelectionBackColor = Color.LightSeaGreen;
-            dgvDetalleCompras.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            dgvDetalleCompras.RowTemplate.Height = 25;
-            dgvDetalleCompras.Size = new Size(799, 325);
-            dgvDetalleCompras.TabIndex = 82;
+            dgvDetalleVenta.AllowUserToAddRows = false;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvDetalleVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvDetalleVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDetalleVenta.Columns.AddRange(new DataGridViewColumn[] { Producto, Precio, Cantidad, SubTotal });
+            dgvDetalleVenta.Location = new Point(213, 202);
+            dgvDetalleVenta.Name = "dgvDetalleVenta";
+            dataGridViewCellStyle4.SelectionBackColor = Color.LightSeaGreen;
+            dgvDetalleVenta.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvDetalleVenta.RowTemplate.Height = 25;
+            dgvDetalleVenta.Size = new Size(799, 325);
+            dgvDetalleVenta.TabIndex = 82;
+            // 
+            // Producto
+            // 
+            Producto.HeaderText = "Producto";
+            Producto.Name = "Producto";
+            Producto.Width = 300;
+            // 
+            // Precio
+            // 
+            Precio.HeaderText = "Precio";
+            Precio.Name = "Precio";
+            Precio.Width = 150;
+            // 
+            // Cantidad
+            // 
+            Cantidad.HeaderText = "Cantidad";
+            Cantidad.Name = "Cantidad";
+            Cantidad.Width = 150;
+            // 
+            // SubTotal
+            // 
+            SubTotal.HeaderText = "SubTotal";
+            SubTotal.Name = "SubTotal";
+            SubTotal.Width = 150;
             // 
             // txtNumeroDocumento
             // 
@@ -121,12 +146,12 @@
             txtNumeroDocumento.TabIndex = 70;
             txtNumeroDocumento.Visible = false;
             // 
-            // txtNombreProveedor
+            // txtNombreCliente
             // 
-            txtNombreProveedor.Location = new Point(132, 47);
-            txtNombreProveedor.Name = "txtNombreProveedor";
-            txtNombreProveedor.Size = new Size(209, 23);
-            txtNombreProveedor.TabIndex = 8;
+            txtNombreCliente.Location = new Point(132, 47);
+            txtNombreCliente.Name = "txtNombreCliente";
+            txtNombreCliente.Size = new Size(209, 23);
+            txtNombreCliente.TabIndex = 8;
             // 
             // txtDocCliente
             // 
@@ -167,7 +192,7 @@
             // 
             groupBox2.BackColor = Color.White;
             groupBox2.Controls.Add(txtNumeroDocumento);
-            groupBox2.Controls.Add(txtNombreProveedor);
+            groupBox2.Controls.Add(txtNombreCliente);
             groupBox2.Controls.Add(txtDocCliente);
             groupBox2.Controls.Add(label8);
             groupBox2.Controls.Add(label9);
@@ -259,6 +284,7 @@
             btnBorrarBusqueda.TextAlign = ContentAlignment.MiddleRight;
             btnBorrarBusqueda.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnBorrarBusqueda.UseVisualStyleBackColor = false;
+            btnBorrarBusqueda.Click += btnBorrarBusqueda_Click;
             // 
             // btnBuscar
             // 
@@ -277,6 +303,7 @@
             btnBuscar.TextAlign = ContentAlignment.MiddleRight;
             btnBuscar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnBuscar.UseVisualStyleBackColor = false;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // txtBusqueda
             // 
@@ -320,7 +347,6 @@
             txtMontoCambio.Name = "txtMontoCambio";
             txtMontoCambio.Size = new Size(77, 23);
             txtMontoCambio.TabIndex = 87;
-            txtMontoCambio.TextChanged += txtMontoCambio_TextChanged;
             // 
             // label7
             // 
@@ -331,7 +357,6 @@
             label7.Size = new Size(91, 15);
             label7.TabIndex = 86;
             label7.Text = "Monto Cambio:";
-            label7.Click += this.label7_Click;
             // 
             // label10
             // 
@@ -350,30 +375,6 @@
             txtMontoPago.Size = new Size(77, 23);
             txtMontoPago.TabIndex = 87;
             // 
-            // Producto
-            // 
-            Producto.HeaderText = "Producto";
-            Producto.Name = "Producto";
-            Producto.Width = 300;
-            // 
-            // Precio
-            // 
-            Precio.HeaderText = "Precio";
-            Precio.Name = "Precio";
-            Precio.Width = 150;
-            // 
-            // Cantidad
-            // 
-            Cantidad.HeaderText = "Cantidad";
-            Cantidad.Name = "Cantidad";
-            Cantidad.Width = 150;
-            // 
-            // SubTotal
-            // 
-            SubTotal.HeaderText = "SubTotal";
-            SubTotal.Name = "SubTotal";
-            SubTotal.Width = 150;
-            // 
             // frmVentasDetalle
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -385,7 +386,7 @@
             Controls.Add(label7);
             Controls.Add(btnDescargar);
             Controls.Add(txtMontoTotal);
-            Controls.Add(dgvDetalleCompras);
+            Controls.Add(dgvDetalleVenta);
             Controls.Add(label12);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -397,7 +398,7 @@
             Controls.Add(label1);
             Name = "frmVentasDetalle";
             Text = "frmVentasDetalle";
-            ((System.ComponentModel.ISupportInitialize)dgvDetalleCompras).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDetalleVenta).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox1.ResumeLayout(false);
@@ -410,9 +411,9 @@
 
         private FontAwesome.Sharp.IconButton btnDescargar;
         private TextBox txtMontoTotal;
-        private DataGridView dgvDetalleCompras;
+        private DataGridView dgvDetalleVenta;
         private TextBox txtNumeroDocumento;
-        private TextBox txtNombreProveedor;
+        private TextBox txtNombreCliente;
         private TextBox txtDocCliente;
         private Label label8;
         private Label label9;

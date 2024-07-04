@@ -140,122 +140,123 @@ namespace CapaDatos
         }
 
 
-        //public Venta ObtenerVenta(string NumeroDoc)
-        //{
-        //    Venta entidad = new Venta();
+        public Venta ObtenerVenta(string NumeroDoc)
+        {
+            Venta entidad = new Venta();
 
-        //    using (SqlConnection oConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["cadena_conexion"].ConnectionString))
-        //    {
-        //        try
-        //        {
-        //            StringBuilder query = new StringBuilder();
-        //            query.AppendLine("SELECT u.NombreCompleto,");
-        //            query.AppendLine("p.Documento, p.RazonSocial,");
-        //            query.AppendLine("c.IdVenta, c.TipoDocumento, c.NumeroDocumento, c.MontoTotal, convert(char(10), c.FechaRegistro, 103) 'FechaRegistro'");
-        //            query.AppendLine("FROM Venta c");
-        //            query.AppendLine("INNER JOIN Usuario u ON u.IdUsuario = c.IdUsuario");
-        //            query.AppendLine("INNER JOIN Proveedor p ON p.IdProveedor = c.IdProveedor");
-        //            query.AppendLine("WHERE c.NumeroDocumento = @NumeroDoc");
+            using (SqlConnection oConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["cadena_conexion"].ConnectionString))
+            {
+                try
+                {
+                    StringBuilder query = new StringBuilder();
+                    query.AppendLine("SELECT v.IdVenta,");
+                    query.AppendLine("v.DocumentoCliente, v.NombreCliente,");
+                    query.AppendLine("v.TipoDocumento, v.NumeroDocumento,");
+                    query.AppendLine("v.MontoTotal, v.MontoCambio, v.MontoPago,");
+                    query.AppendLine("convert(char(10),v.FechaRegistro,103) 'FechaRegistro',");
+                    query.AppendLine("u.NombreCompleto");
+                    query.AppendLine("FROM Venta v");
+                    query.AppendLine("INNER JOIN Usuario u ON u.IdUsuario = v.IdUsuario");
+                    query.AppendLine("WHERE v.NumeroDocumento = @NumeroDoc");
 
-        //            SqlCommand cmd = new SqlCommand(query.ToString(), oConnection);
+                    SqlCommand cmd = new SqlCommand(query.ToString(), oConnection);
 
-        //            cmd.Parameters.AddWithValue("@NumeroDoc", NumeroDoc);
-        //            cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@NumeroDoc", NumeroDoc);
+                    cmd.CommandType = CommandType.Text;
 
-        //            oConnection.Open();
+                    oConnection.Open();
 
-        //            using (SqlDataReader dr = cmd.ExecuteReader())
-        //            {
-        //                while (dr.Read())
-        //                {
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
 
-        //                    entidad = new Venta()
-        //                    {
-        //                        oUsuario = new Usuario() 
-        //                        { 
-        //                            NombreCompleto = dr["NombreCompleto"].ToString() 
-        //                        },
-        //                        oProveedor = new Proveedor() 
-        //                        {
-        //                            RazonSocial = dr["RazonSocial"].ToString(),
-        //                            Documento = dr["Documento"].ToString()
-        //                        },
-        //                        IdVenta = Convert.ToInt32(dr["IdVenta"]),
-        //                        TipoDocumento = dr["TipoDocumento"].ToString(),
-        //                        NumeroDocumento = dr["NumeroDocumento"].ToString(),
-        //                        MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
-        //                        FechaRegistro = dr["FechaRegistro"].ToString()
-        //                    };
-        //                }
-        //            }
-        //        }
-        //        catch (SqlException ex)
-        //        {
-        //            Console.WriteLine("SQL Error: " + ex.Message);
-        //            entidad = new Venta();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine("Error: " + ex.Message);
-        //            entidad = new Venta();
-        //        }
-        //    }
-        //    return entidad;
-        //}
-
+                            entidad = new Venta()
+                            {
+                                IdVenta = Convert.ToInt32(dr["IdVenta"]),
+                                DocumentoCliente = dr["DocumentoCliente"].ToString(),
+                                NombreCliente = dr["NombreCliente"].ToString(),
+                                TipoDocumento = dr["TipoDocumento"].ToString(),
+                                NumeroDocumento = dr["NumeroDocumento"].ToString(),
+                                MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
+                                MontoCambio = Convert.ToDecimal(dr["MontoCambio"]),
+                                MontoPago = Convert.ToDecimal(dr["MontoPago"]),
+                                FechaRegistro = dr["FechaRegistro"].ToString(),
+                                oUsuario = new Usuario()
+                                {
+                                    NombreCompleto = dr["NombreCompleto"].ToString()
+                                }
+                            };
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine("SQL Error: " + ex.Message);
+                    entidad = new Venta();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    entidad = new Venta();
+                }
+            }
+            return entidad;
+        }
 
 
-        //public List<Detalle_Venta> ListadoDetalleVenta(int idVenta)
-        //{
-        //    List<Detalle_Venta> lista = new List<Detalle_Venta>();
 
-        //    using (SqlConnection oConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["cadena_conexion"].ConnectionString))
-        //    {
-        //        try
-        //        {
-        //            StringBuilder query = new StringBuilder();
-        //            query.AppendLine("SELECT p.Nombre, dc.PrecioVenta, dc.Cantidad, dc.MontoTotal");
-        //            query.AppendLine("FROM DetalleVenta dc");
-        //            query.AppendLine("INNER JOIN Producto p ON p.IdProducto = dc.IdProducto");
-        //            query.AppendLine("WHERE dc.IdVenta = @IdVenta");
+        public List<Detalle_Venta> ListadoDetalleVenta(int idVenta)
+        {
+            List<Detalle_Venta> lista = new List<Detalle_Venta>();
 
-        //            SqlCommand cmd = new SqlCommand(query.ToString(), oConnection);
-        //            cmd.Parameters.AddWithValue("@IdVenta", idVenta);
-        //            cmd.CommandType = CommandType.Text;
+            using (SqlConnection oConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["cadena_conexion"].ConnectionString))
+            {
+                try
+                {
+                    StringBuilder query = new StringBuilder();
+                    query.AppendLine("SELECT p.Nombre, dv.PrecioVenta, dv.Cantidad, dv.SubTotal");
+                    query.AppendLine("FROM DetalleVenta dv");
+                    query.AppendLine("INNER JOIN Producto p ON p.IdProducto = dv.IdProducto");
+                    query.AppendLine("WHERE dv.IdVenta = @IdVenta");
 
-        //            oConnection.Open();
+                    SqlCommand cmd = new SqlCommand(query.ToString(), oConnection);
+                    cmd.Parameters.AddWithValue("@IdVenta", idVenta);
+                    cmd.CommandType = CommandType.Text;
 
-        //            using (SqlDataReader dr = cmd.ExecuteReader())
-        //            {
-        //                while (dr.Read())
-        //                {
-        //                    lista.Add(new Detalle_Venta()
-        //                    {
-        //                        oProducto = new Producto()
-        //                        {
-        //                            Nombre = dr["Nombre"].ToString(),
-        //                        },
-        //                        PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"].ToString()),
-        //                        Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()),
-        //                        MontoTotal = Convert.ToDecimal(dr["MontoTotal"].ToString()),
+                    oConnection.Open();
 
-        //                    });
-        //                }
-        //            }
-        //        }
-        //        catch (SqlException ex)
-        //        {
-        //            Console.WriteLine("SQL Error: " + ex.Message);
-        //            lista = new List<Detalle_Venta>();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine("Error: " + ex.Message);
-        //            lista = new List<Detalle_Venta>();
-        //        }
-        //    }
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new Detalle_Venta()
+                            {
+                                oProducto = new Producto()
+                                {
+                                    Nombre = dr["Nombre"].ToString(),
+                                },
+                                PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"].ToString()),
+                                Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()),
+                                SubTotal = Convert.ToDecimal(dr["SubTotal"].ToString()),
 
-        //    return lista;
-        //}
+                            });
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine("SQL Error: " + ex.Message);
+                    lista = new List<Detalle_Venta>();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    lista = new List<Detalle_Venta>();
+                }
+            }
+
+            return lista;
+        }
     }
 }
