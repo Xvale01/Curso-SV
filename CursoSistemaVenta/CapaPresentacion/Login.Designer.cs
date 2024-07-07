@@ -38,6 +38,7 @@
             btnIngresar = new FontAwesome.Sharp.IconButton();
             iconDropDownButton1 = new FontAwesome.Sharp.IconDropDownButton();
             btnCancelar = new FontAwesome.Sharp.IconButton();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -47,7 +48,7 @@
             label1.Dock = DockStyle.Left;
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(297, 262);
+            label1.Size = new Size(303, 268);
             label1.TabIndex = 0;
             // 
             // label2
@@ -79,7 +80,7 @@
             // txtDocumento
             // 
             txtDocumento.Cursor = Cursors.IBeam;
-            txtDocumento.Location = new Point(317, 63);
+            txtDocumento.Location = new Point(325, 94);
             txtDocumento.Name = "txtDocumento";
             txtDocumento.Size = new Size(257, 23);
             txtDocumento.TabIndex = 4;
@@ -87,7 +88,7 @@
             // txtContrasenna
             // 
             txtContrasenna.Cursor = Cursors.IBeam;
-            txtContrasenna.Location = new Point(317, 121);
+            txtContrasenna.Location = new Point(325, 148);
             txtContrasenna.Name = "txtContrasenna";
             txtContrasenna.PasswordChar = '*';
             txtContrasenna.Size = new Size(257, 23);
@@ -96,7 +97,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(317, 45);
+            label3.Location = new Point(325, 76);
             label3.Name = "label3";
             label3.Size = new Size(135, 15);
             label3.TabIndex = 6;
@@ -105,7 +106,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(317, 103);
+            label4.Location = new Point(325, 130);
             label4.Name = "label4";
             label4.Size = new Size(70, 15);
             label4.TabIndex = 7;
@@ -124,7 +125,7 @@
             btnIngresar.IconColor = Color.White;
             btnIngresar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnIngresar.IconSize = 23;
-            btnIngresar.Location = new Point(317, 172);
+            btnIngresar.Location = new Point(325, 202);
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(119, 31);
             btnIngresar.TabIndex = 8;
@@ -156,7 +157,7 @@
             btnCancelar.IconColor = Color.White;
             btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCancelar.IconSize = 23;
-            btnCancelar.Location = new Point(455, 172);
+            btnCancelar.Location = new Point(463, 202);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(119, 31);
             btnCancelar.TabIndex = 9;
@@ -166,12 +167,24 @@
             btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(325, 25);
+            label5.Margin = new Padding(0);
+            label5.Name = "label5";
+            label5.Size = new Size(138, 28);
+            label5.TabIndex = 10;
+            label5.Text = "Iniciar Sesión";
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(595, 262);
+            ClientSize = new Size(604, 268);
+            Controls.Add(label5);
             Controls.Add(btnCancelar);
             Controls.Add(btnIngresar);
             Controls.Add(label4);
@@ -204,5 +217,6 @@
         private FontAwesome.Sharp.IconButton btnIngresar;
         private FontAwesome.Sharp.IconDropDownButton iconDropDownButton1;
         private FontAwesome.Sharp.IconButton btnCancelar;
+        private Label label5;
     }
 }

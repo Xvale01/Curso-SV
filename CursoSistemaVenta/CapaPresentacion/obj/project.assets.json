@@ -5366,7 +5366,7 @@
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\Valeria\\Documents\\UNIVERSIDAD\\2024\\TCU\\Curso-SV\\CursoSistemaVenta\\CapaPresentacion\\CapaPresentacion.csproj",
-      "projectName": "CapaPresentacion",
+      "projectName": "SistemaVenta",
       "projectPath": "C:\\Users\\Valeria\\Documents\\UNIVERSIDAD\\2024\\TCU\\Curso-SV\\CursoSistemaVenta\\CapaPresentacion\\CapaPresentacion.csproj",
       "packagesPath": "C:\\Users\\Valeria\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Valeria\\Documents\\UNIVERSIDAD\\2024\\TCU\\Curso-SV\\CursoSistemaVenta\\CapaPresentacion\\obj\\",

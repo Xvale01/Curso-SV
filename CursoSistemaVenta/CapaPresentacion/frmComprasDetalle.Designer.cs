@@ -321,6 +321,7 @@
             // btnDescargar
             // 
             btnDescargar.BackColor = Color.LightSeaGreen;
+            btnDescargar.FlatStyle = FlatStyle.Popup;
             btnDescargar.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             btnDescargar.ForeColor = Color.White;
             btnDescargar.IconChar = FontAwesome.Sharp.IconChar.Download;

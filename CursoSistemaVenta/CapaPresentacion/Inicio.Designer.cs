@@ -43,12 +43,15 @@
             menuClientes = new FontAwesome.Sharp.IconMenuItem();
             menuProveedores = new FontAwesome.Sharp.IconMenuItem();
             menuReportes = new FontAwesome.Sharp.IconMenuItem();
+            subMenuReporteCompra = new ToolStripMenuItem();
+            subMenuReporteVenta = new ToolStripMenuItem();
             menuAcercaDe = new FontAwesome.Sharp.IconMenuItem();
             menuTitulo = new MenuStrip();
             label1 = new Label();
             contenedor = new Panel();
             lblUsuario = new Label();
             lblNombreUsuario = new Label();
+            btnLogout = new FontAwesome.Sharp.IconButton();
             menu.SuspendLayout();
             SuspendLayout();
             // 
@@ -235,6 +238,7 @@
             // menuReportes
             // 
             menuReportes.AutoSize = false;
+            menuReportes.DropDownItems.AddRange(new ToolStripItem[] { subMenuReporteCompra, subMenuReporteVenta });
             menuReportes.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             menuReportes.ForeColor = Color.LightSeaGreen;
             menuReportes.IconChar = FontAwesome.Sharp.IconChar.ChartArea;
@@ -246,7 +250,22 @@
             menuReportes.Size = new Size(80, 69);
             menuReportes.Text = "Reportes";
             menuReportes.TextImageRelation = TextImageRelation.ImageAboveText;
-            menuReportes.Click += menuReportes_Click;
+            // 
+            // subMenuReporteCompra
+            // 
+            subMenuReporteCompra.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            subMenuReporteCompra.Name = "subMenuReporteCompra";
+            subMenuReporteCompra.Size = new Size(174, 22);
+            subMenuReporteCompra.Text = "Reporte Compra";
+            subMenuReporteCompra.Click += subMenuReporteCompra_Click;
+            // 
+            // subMenuReporteVenta
+            // 
+            subMenuReporteVenta.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            subMenuReporteVenta.Name = "subMenuReporteVenta";
+            subMenuReporteVenta.Size = new Size(174, 22);
+            subMenuReporteVenta.Text = "Reporte Venta";
+            subMenuReporteVenta.Click += subMenuReporteVenta_Click;
             // 
             // menuAcercaDe
             // 
@@ -318,11 +337,29 @@
             lblNombreUsuario.TabIndex = 5;
             lblNombreUsuario.Text = "Juanito";
             // 
+            // btnLogout
+            // 
+            btnLogout.AutoSize = true;
+            btnLogout.BackColor = Color.LightSeaGreen;
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.ForeColor = Color.White;
+            btnLogout.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
+            btnLogout.IconColor = Color.White;
+            btnLogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnLogout.IconSize = 45;
+            btnLogout.Location = new Point(1215, 5);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(53, 53);
+            btnLogout.TabIndex = 6;
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
+            // 
             // Inicio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1282, 739);
+            Controls.Add(btnLogout);
             Controls.Add(lblNombreUsuario);
             Controls.Add(lblUsuario);
             Controls.Add(contenedor);
@@ -363,5 +400,8 @@
         private FontAwesome.Sharp.IconMenuItem subMenuRegistrarCompra;
         private FontAwesome.Sharp.IconMenuItem subMenuVerDetalleCompra;
         private ToolStripMenuItem subMenuNegocio;
+        private ToolStripMenuItem subMenuReporteCompra;
+        private ToolStripMenuItem subMenuReporteVenta;
+        private FontAwesome.Sharp.IconButton btnLogout;
     }
 }

@@ -496,7 +496,6 @@ CREATE TYPE [dbo].[EDetalle_Venta] AS TABLE(
 )
 GO
 
-SELECT * FROM DetalleVenta
 
 
 CREATE PROCEDURE sp_RegistrarVenta(
@@ -546,9 +545,72 @@ BEGIN
 END
 
 
+/* ----------------- REPORTES COMPRAS ----------------- */
+
+CREATE PROCEDURE sp_ReporteCompras (
+@fechainicio varchar(10),
+@fechafin varchar(10),
+@idproveedor int
+)
+AS 
+BEGIN
+
+SET DATEFORMAT dmy;
+
+SELECT
+    CONVERT(char(10), c.FechaRegistro, 103) AS FechaRegistro,
+    c.TipoDocumento,
+    c.NumeroDocumento,
+    c.MontoTotal,
+    u.NombreCompleto AS UsuarioRegistro,
+    pr.Documento AS DocumentoProveedor,
+    pr.RazonSocial,
+    p.Codigo AS CodigoProducto,
+    p.Nombre AS NombreProducto,
+    ca.Descripcion AS Categoria,
+    dc.PrecioCompra,
+    dc.PrecioVenta,
+    dc.Cantidad,
+    dc.MontoTotal AS SubTotal
+FROM COMPRA c
+INNER JOIN USUARIO u ON u.IdUsuario = c.IdUsuario
+INNER JOIN PROVEEDOR pr ON pr.IdProveedor = c.IdProveedor
+INNER JOIN DETALLECOMPRA dc ON dc.IdCompra = c.IdCompra
+INNER JOIN PRODUCTO p ON p.IdProducto = dc.IdProducto
+INNER JOIN CATEGORIA ca ON ca.IdCategoria = p.IdCategoria
+WHERE CONVERT(date, c.FechaRegistro) BETWEEN @fechainicio AND @fechafin
+AND pr.IdProveedor = iif(@idproveedor=0,pr.IdProveedor,@idproveedor)
+END
 
 
 
 
-select count(*) + 1 from venta
-update producto set stock = stock - @idProducto where idproducto = @idProducto
+
+
+
+/* ----------------- REPORTES VENTAS ----------------- */
+
+
+CREATE PROCEDURE sp_ReporteVentas(
+@fechainicio VARCHAR(10),
+@fechafin VARCHAR(10)
+)
+
+AS 
+BEGIN
+SET DATEFORMAT dmy;
+SELECT
+	convert(char(10),v.FechaRegistro,103) [FechaRegistro],v.TipoDocumento, v.NumeroDocumento, v.MontoTotal,
+	u.NombreCompleto[UsuarioRegistro],
+	v.DocumentoCliente, v.NombreCliente,
+	p.Codigo[CodigoProducto],p.Nombre[NombreProducto],ca.Descripcion[Categoria],dv.PrecioVenta, dv.Cantidad, dv.SubTotal
+	FROM VENTA V
+	INNER JOIN USUARIO u on u.IdUsuario = v.IdUsuario
+	INNER JOIN DETALLEVENTA dv on dv.IdVenta = v.IdVenta
+	INNER JOIN PRODUCTO p on p.IdProducto = dv.IdProducto
+	INNER JOIN CATEGORIA ca on ca. IdCategoria = p.IdCategoria
+	where CONVERT(date, v.FechaRegistro) BETWEEN @fechainicio AND @fechafin
+END
+
+SELECT * FROM Venta
+exec sp_ReporteVentas '30/6/2024', '4/7/2024'

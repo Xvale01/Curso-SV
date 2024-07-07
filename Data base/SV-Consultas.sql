@@ -64,5 +64,58 @@ INNER JOIN Producto p ON p.IdProducto = dc.IdProducto
 WHERE dc.IdCompra = 12
 
 
+update producto set stock = stock - @idProducto where idproducto = @idProducto
 
 SELECT * FROM Producto
+
+
+
+
+
+SELECT * FROM VENTA
+SELECT * FROM compra
+SELECT * FROM DetalleCompra
+SELECT * FROM DetalleVenta
+SELECT * FROM Producto
+
+SELECT v.IdVenta,
+ v.DocumentoCliente, v.NombreCliente,
+ v.TipoDocumento, v.NumeroDocumento,
+ v.MontoTotal, v.MontoCambio, v.MontoPago,
+ convert(char(10),v.FechaRegistro,103) 'FechaRegistro',
+ u.NombreCompleto
+FROM Venta v 
+INNER JOIN Usuario u ON u.IdUsuario = v.IdUsuario
+WHERE v.NumeroDocumento = '00001'
+
+SELECT p.Nombre, dv.PrecioVenta, dv.Cantidad, dv.SubTotal
+FROM DetalleVenta dv
+INNER JOIN Producto p ON p.IdProducto = dv.IdProducto
+WHERE dv.IdVenta = 12
+
+
+
+SELECT
+    CONVERT(char(10), c.FechaRegistro, 103) AS FechaRegistro,
+    c.TipoDocumento,
+    c.NumeroDocumento,
+    c.MontoTotal,
+    u.NombreCompleto AS UsuarioRegistro,
+    pr.Documento AS DocumentoProveedor,
+    pr.RazonSocial,
+    p.Codigo AS CodigoProducto,
+    p.Nombre AS NombreProducto,
+    ca.Descripcion AS Categoria,
+    dc.PrecioCompra,
+    dc.PrecioVenta,
+    dc.Cantidad,
+    dc.MontoTotal AS SubTotal
+FROM COMPRA c
+INNER JOIN USUARIO u ON u.IdUsuario = c.IdUsuario
+INNER JOIN PROVEEDOR pr ON pr.IdProveedor = c.IdProveedor
+INNER JOIN DETALLECOMPRA dc ON dc.IdCompra = c.IdCompra
+INNER JOIN PRODUCTO p ON p.IdProducto = dc.IdProducto
+INNER JOIN CATEGORIA ca ON ca.IdCategoria = p.IdCategoria
+WHERE CONVERT(DATE, c.FechaRegistro) BETWEEN '2024-06-30' AND '2024-07-30';
+
+
