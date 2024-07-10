@@ -8,10 +8,11 @@
     <UseWPF>False</UseWPF>
     <AssemblyName>SistemaVenta</AssemblyName>
     <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
-    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <ApplicationIcon>sales_sale_supermarket_stock_market_icon_153849.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <Content Include="sales_sale_supermarket_stock_market_icon_153849.ico" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.102.2" />

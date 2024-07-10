@@ -1,5 +1,3 @@
-CREATE DATABASE DB_SISTEMA_VENTA
-GO
 
 USE DB_SISTEMA_VENTA
 GO
@@ -130,3 +128,6 @@ RUC varchar(60),
 Direccion varchar(60),
 Logo varbinary(max) NULL
 )
+
+
+

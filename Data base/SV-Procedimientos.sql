@@ -163,7 +163,7 @@ AS BEGIN
 END
 
 
-ALTER PROCEDURE SP_EliminarCategoria (
+CREATE PROCEDURE SP_EliminarCategoria (
 @IdCategoria int,
 @Respuesta BIT OUTPUT,
 @Mensaje VARCHAR(500) OUTPUT
@@ -342,7 +342,7 @@ GO
 
 
 /* ---------------- PROVEEDORES ---------------- */
-ALTER PROCEDURE  SP_RegistrarProveedor (
+CREATE PROCEDURE  SP_RegistrarProveedor (
 @Documento VARCHAR(50),
 @RazonSocial VARCHAR(100),
 @Correo VARCHAR(50),
@@ -365,7 +365,7 @@ END
 GO
 
 
-ALTER PROCEDURE SP_EditarProveedor(
+CREATE PROCEDURE SP_EditarProveedor(
 @IdProveedor INT,
 @Documento VARCHAR(50),
 @RazonSocial VARCHAR(100),
@@ -432,7 +432,7 @@ CREATE TYPE [dbo].[EDetalle_Compra] AS TABLE(
 )
 GO
 
-ALTER PROCEDURE sp_RegistrarCompra(
+CREATE PROCEDURE sp_RegistrarCompra(
 @idUsuario int,
 @IdProveedor int,
 @TipoDocumento varchar(500),
@@ -600,10 +600,19 @@ AS
 BEGIN
 SET DATEFORMAT dmy;
 SELECT
-	convert(char(10),v.FechaRegistro,103) [FechaRegistro],v.TipoDocumento, v.NumeroDocumento, v.MontoTotal,
+	convert(char(10),v.FechaRegistro,103) [FechaRegistro],
+	v.TipoDocumento,
+	v.NumeroDocumento,
+	v.MontoTotal,
 	u.NombreCompleto[UsuarioRegistro],
-	v.DocumentoCliente, v.NombreCliente,
-	p.Codigo[CodigoProducto],p.Nombre[NombreProducto],ca.Descripcion[Categoria],dv.PrecioVenta, dv.Cantidad, dv.SubTotal
+	v.DocumentoCliente,
+	v.NombreCliente,
+	p.Codigo[CodigoProducto],
+	p.Nombre[NombreProducto],
+	ca.Descripcion[Categoria],
+	dv.PrecioVenta,
+	dv.Cantidad,
+	dv.SubTotal
 	FROM VENTA V
 	INNER JOIN USUARIO u on u.IdUsuario = v.IdUsuario
 	INNER JOIN DETALLEVENTA dv on dv.IdVenta = v.IdVenta
@@ -611,6 +620,3 @@ SELECT
 	INNER JOIN CATEGORIA ca on ca. IdCategoria = p.IdCategoria
 	where CONVERT(date, v.FechaRegistro) BETWEEN @fechainicio AND @fechafin
 END
-
-SELECT * FROM Venta
-exec sp_ReporteVentas '30/6/2024', '4/7/2024'
